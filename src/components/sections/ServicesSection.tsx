@@ -5,6 +5,7 @@ import { agencyConfig } from "@/data/agency";
 import { Container } from "@/components/ui/Container";
 import { useLanguage } from "@/lib/LanguageContext";
 import { ArrowLeft, ArrowRight, CheckCircle, Sparkles } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export function ServicesSection() {
   const { lang, t } = useLanguage();
@@ -52,7 +53,12 @@ export function ServicesSection() {
           <div className="relative bg-[#FDFBF7] border border-[#E5DDD1] rounded-3xl p-7 sm:p-12 shadow-sm hover:shadow-md transition-all duration-300">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
               {/* Text Header */}
-              <div className="lg:col-span-6 space-y-4 text-right">
+              <div
+                className={cn(
+                  "lg:col-span-6 space-y-4",
+                  lang === "ar" ? "text-right" : "text-left"
+                )}
+              >
                 <div className="flex items-center gap-3">
                   <span className="text-sm font-black text-[#B85D43] px-3 py-1 rounded-lg bg-[#F4EDE2] border border-[#E5DDD1]">
                     {t("service1Num")}
@@ -89,7 +95,12 @@ export function ServicesSection() {
 
               {/* Capabilities Grid Block */}
               <div className="lg:col-span-6 bg-[#F7F2EA] border border-[#EBE3D7] rounded-2xl p-6 sm:p-8">
-                <h4 className="text-xs font-extrabold uppercase tracking-wider text-[#8C7662] mb-4 text-right">
+                <h4
+                  className={cn(
+                    "text-xs font-extrabold uppercase tracking-wider text-[#8C7662] mb-4",
+                    lang === "ar" ? "text-right" : "text-left"
+                  )}
+                >
                   {t("capabilitiesLabel")}
                 </h4>
 
@@ -97,7 +108,10 @@ export function ServicesSection() {
                   {webCapabilities.map((cap, idx) => (
                     <div
                       key={idx}
-                      className="flex items-center gap-2.5 p-3 rounded-xl bg-[#FDFBF7] border border-[#E5DDD1] text-xs font-bold text-[#3D3732] shadow-2xs"
+                      className={cn(
+                        "flex items-center gap-2.5 p-3 rounded-xl bg-[#FDFBF7] border border-[#E5DDD1] text-xs font-bold text-[#3D3732] shadow-2xs",
+                        lang === "ar" ? "text-right" : "text-left"
+                      )}
                     >
                       <CheckCircle className="h-4 w-4 text-[#B85D43] shrink-0" />
                       <span>{cap}</span>
@@ -112,7 +126,12 @@ export function ServicesSection() {
           <div className="relative bg-[#FDFBF7] border border-[#E5DDD1] rounded-3xl p-7 sm:p-12 shadow-sm hover:shadow-md transition-all duration-300">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
               {/* Text Header */}
-              <div className="lg:col-span-6 space-y-4 text-right">
+              <div
+                className={cn(
+                  "lg:col-span-6 space-y-4",
+                  lang === "ar" ? "text-right" : "text-left"
+                )}
+              >
                 <div className="flex items-center gap-3">
                   <span className="text-sm font-black text-[#B85D43] px-3 py-1 rounded-lg bg-[#F4EDE2] border border-[#E5DDD1]">
                     {t("service2Num")}
@@ -149,7 +168,12 @@ export function ServicesSection() {
 
               {/* Capabilities Grid Block */}
               <div className="lg:col-span-6 bg-[#F7F2EA] border border-[#EBE3D7] rounded-2xl p-6 sm:p-8">
-                <h4 className="text-xs font-extrabold uppercase tracking-wider text-[#8C7662] mb-4 text-right">
+                <h4
+                  className={cn(
+                    "text-xs font-extrabold uppercase tracking-wider text-[#8C7662] mb-4",
+                    lang === "ar" ? "text-right" : "text-left"
+                  )}
+                >
                   {t("capabilitiesLabel")}
                 </h4>
 
@@ -157,7 +181,10 @@ export function ServicesSection() {
                   {adsCapabilities.map((cap, idx) => (
                     <div
                       key={idx}
-                      className="flex items-center gap-2.5 p-3 rounded-xl bg-[#FDFBF7] border border-[#E5DDD1] text-xs font-bold text-[#3D3732] shadow-2xs"
+                      className={cn(
+                        "flex items-center gap-2.5 p-3 rounded-xl bg-[#FDFBF7] border border-[#E5DDD1] text-xs font-bold text-[#3D3732] shadow-2xs",
+                        lang === "ar" ? "text-right" : "text-left"
+                      )}
                     >
                       <CheckCircle className="h-4 w-4 text-[#B85D43] shrink-0" />
                       <span>{cap}</span>

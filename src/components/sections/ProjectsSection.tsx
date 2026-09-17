@@ -3,15 +3,17 @@
 import * as React from "react";
 import { projectsData } from "@/data/projects";
 import { Container } from "@/components/ui/Container";
-import { ExternalLink, FolderGit2, Check } from "lucide-react";
+import { FolderGit2, Check } from "lucide-react";
+import { useLanguage } from "@/lib/LanguageContext";
 
 export function ProjectsSection() {
+  const { t } = useLanguage();
   const [activeCategory, setActiveCategory] = React.useState<string>("الكل");
 
-  const categories = ["الكل", "تطوير مواقع", "صفحة هبوط"];
+  const categories = [t("catAll"), t("catWeb"), t("catLanding")];
 
   const filteredProjects =
-    activeCategory === "الكل"
+    activeCategory === t("catAll") || activeCategory === "الكل"
       ? projectsData
       : projectsData.filter((p) => p.category === activeCategory);
 
@@ -23,13 +25,13 @@ export function ProjectsSection() {
           <div>
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#EFE8DC] text-xs font-bold text-[#876E57] mb-2.5">
               <FolderGit2 className="h-3.5 w-3.5 text-[#B85D43]" />
-              <span>معرض الأعمال والنتايج</span>
+              <span>{t("projectsBadge")}</span>
             </div>
             <h2 className="text-2xl sm:text-4xl font-extrabold text-[#2D2926]">
-              أبرز الأعمال والمشاريع المميزة 💼
+              {t("projectsTitle")}
             </h2>
             <p className="mt-2 text-sm sm:text-base text-[#685F56]">
-              نماذج واقعية لمواقع اتصممت وحملات إعلانية اتنفذت وحققت مبيعات وحجوزات حقيقية.
+              {t("projectsSubtext")}
             </p>
           </div>
 

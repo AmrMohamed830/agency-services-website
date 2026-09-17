@@ -1,28 +1,79 @@
 import { FAQItem } from "@/types";
 
-export const faqData: FAQItem[] = [
+export const faqDataAr: FAQItem[] = [
   {
-    question: "How do you work with international clients in different time zones?",
+    question: "إيه الخدمات اللي بتقدموها؟",
     answer:
-      "We operate with asynchronous communication workflows (Slack, Notion, Loom) alongside scheduled milestone calls to ensure seamless alignment across US, European, and Middle Eastern time zones.",
-    category: "General",
+      "بنقدم خدمات تطوير المواقع، تصميم واجهات وتجربة المستخدم، وتجهيز وربط أدوات التتبع والإعلانات، حسب احتياج مشروعك.",
   },
   {
-    question: "What makes your websites different from standard templates or WordPress?",
+    question: "هل بتعملوا الموقع من التصميم لحد الإطلاق؟",
     answer:
-      "We build custom frontends using Next.js and modern web standards. This delivers sub-second page loads, superior security, custom brand identity, and higher conversion rates compared to bloated templates.",
-    category: "Web Development",
+      "أيوه، بنقدر نبدأ من فهم احتياج المشروع وتصميم الواجهات، ثم تطوير الموقع وتجهيزه للإطلاق وربط أدوات التتبع المطلوبة.",
   },
   {
-    question: "Can you help both with website creation and driving paid ad traffic?",
+    question: "هل بتساعدوا في الإعلانات الممولة؟",
     answer:
-      "Yes. In fact, combining high-converting landing pages with tailored media buying campaigns produces the best ROAS, as the messaging between ad and page stays 100% aligned.",
-    category: "Media Buying",
+      "أيوه، بنساعد في إعداد وتشغيل الحملات الإعلانية وربط أدوات التتبع، مع متابعة النتائج وتحسين أداء الحملات.",
   },
   {
-    question: "What is the typical project timeline?",
+    question: "الموقع بياخد وقت قد إيه؟",
     answer:
-      "Dedicated landing pages typically take 1–2 weeks, while full agency websites take 2–4 weeks depending on scope and deliverables.",
-    category: "General",
+      "مدة تنفيذ المشروع بتختلف حسب حجم الموقع، عدد الصفحات والميزات المطلوبة. بعد فهم احتياجك بنحدد لك المدة المتوقعة قبل بدء التنفيذ.",
+  },
+  {
+    question: "هل الموقع بيشتغل على الموبايل والتابلت؟",
+    answer:
+      "أيوه، بنصمم ونطور المواقع بحيث تكون Responsive وتعمل بشكل مناسب على الموبايل والتابلت والكمبيوتر.",
+  },
+  {
+    question: "هل أقدر أطلب تعديلات أثناء تنفيذ المشروع؟",
+    answer:
+      "أيوه، بنحدد مراحل واضحة للمشروع ونراجع التصميم والتنفيذ معاك خلال المراحل المتفق عليها.",
+  },
+  {
+    question: "إزاي أبدأ معاكم؟",
+    answer:
+      "تقدر تتواصل معانا وتشرح لنا فكرة مشروعك واحتياجك، وبعدها بنحدد الخدمة والخطوات المناسبة لتنفيذها.",
   },
 ];
+
+export const faqDataEn: FAQItem[] = [
+  {
+    question: "What services do you offer?",
+    answer:
+      "We provide website development, UI/UX design, analytics and tracking setup, and paid advertising services based on your business needs.",
+  },
+  {
+    question: "Can you handle my website from design to launch?",
+    answer:
+      "Yes. We can help from understanding your business requirements and designing the interface to developing, launching, and setting up the required tracking tools.",
+  },
+  {
+    question: "Can you help with paid advertising?",
+    answer:
+      "Yes. We can help set up and manage paid advertising campaigns, connect tracking tools, monitor results, and optimize campaign performance.",
+  },
+  {
+    question: "How long does a project usually take?",
+    answer:
+      "The timeline depends on the project's size, number of pages, and required features. We'll give you an estimated timeline after understanding your requirements.",
+  },
+  {
+    question: "Will my website work on mobile and tablet?",
+    answer:
+      "Yes. We build responsive websites that work across mobile, tablet, and desktop devices.",
+  },
+  {
+    question: "Can I request changes during the project?",
+    answer:
+      "Yes. We work through clear project stages and review the design and development with you throughout the agreed process.",
+  },
+  {
+    question: "How can I get started?",
+    answer:
+      "Contact us and tell us about your project and what you need. We'll help you determine the right service and next steps.",
+  },
+];
+
+export const faqData = faqDataAr;

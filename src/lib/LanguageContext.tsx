@@ -24,7 +24,7 @@ const translations: Record<Language, Record<string, string>> = {
     langSwitchBtn: "English",
 
     // Hero
-    badgeText: "Websites + Paid Advertising 🚀",
+    badgeText: "Websites + Paid Advertising",
     heroTitlePrefix: "سمارت ميديا — مكان واحد لكل ",
     heroTitleHighlight: "مواقعك وإعلاناتك",
     heroSubtext:
@@ -76,7 +76,7 @@ const translations: Record<Language, Record<string, string>> = {
 
     // Projects
     projectsBadge: "أعمالنا ونتايجنا",
-    projectsTitle: "أبرز الأعمال والمشاريع المميزة 💼",
+    projectsTitle: "أبرز الأعمال والمشاريع المميزة",
     projectsSubtext: "نماذج واقعية لمواقع اتصممت وحملات إعلانية اتنفذت وحققت مبيعات وحجوزات حقيقية.",
     catAll: "الكل",
     catWeb: "تطوير مواقع",
@@ -84,10 +84,10 @@ const translations: Record<Language, Record<string, string>> = {
 
     // Process (إزاي بنشتغل معاك وننفذ طلبك؟)
     processBadge: "خطوات واضحة وسريعة",
-    processTitle: "إزاي بنشتغل معاك وننفذ طلبك؟ ⚙️",
+    processTitle: "إزاي بنشتغل معاك وننفذ طلبك؟",
     processSubtext: "من أول فهم احتياج مشروعك، مرورًا بالتصميم والتطوير، لحد إطلاق موقعك وتشغيل حملاتك الإعلانية.",
     step1Num: "01",
-    step1Title: "بنفهم مشروعك واحتياجك",
+    step1Title: "بنفهم مشروعك وااحتياجك",
     step1Desc: "بنتكلم معاك ونفهم طبيعة مشروعك، أهدافك، والجمهور المستهدف، ونحدد أنسب الخدمات والخطوات لتنفيذ طلبك.",
     step2Num: "02",
     step2Title: "التصميم وتجربة المستخدم",
@@ -101,21 +101,33 @@ const translations: Record<Language, Record<string, string>> = {
 
     // FAQ
     faqBadge: "إجابات مباشرة",
-    faqTitle: "أسئلة بتيجي في بالك 💡",
+    faqTitle: "أسئلة بتيجي في بالك",
     faqSubtext: "إليك إجابات لأهم الأسئلة الشائعة حول خدماتنا في تطوير المواقع والإعلانات الممولة.",
 
-    // Contact
+    // Contact (Approved Final Copy)
     contactBadge: "تواصل مباشر مع سمارت ميديا",
-    contactTitle: "يلا نتكلم ونكبر مشروعك سوا! 🚀",
-    contactSubtext: "اكتبلنا فكرتك والخدمة اللي بتدور عليها وهنرد عليك في أقل من ساعتين مع خطة التنفيذ والعرض المناسب لمشروعك.",
+    contactTitle: "يلا نتكلم ونكبر مشروعك سوا!",
+    contactSubtext: "اكتب لنا فكرة مشروعك والخدمة اللي بتحتاجها، وسنتواصل معك لمناقشة احتياجاتك والخطوات المناسبة لتنفيذها.",
+    whatsappCaption: "أو تواصل معنا مباشرة عبر WhatsApp",
     whatsappBtn: "محادثة واتساب مباشرة",
-    formName: "اسمك أو اسم شركتك",
-    formPhone: "رقم الموبايل / الواتساب",
+    formName: "الاسم",
+    formPhone: "رقم الهاتف / WhatsApp",
     formService: "الخدمة المطلوبة",
-    formDetails: "تفاصيل مختصرة عن مشروعك",
-    formSubmit: "إرسال الطلب الآن",
+    servicePlaceholder: "-- اختر الخدمة المطلوبة --",
+    serviceOptWeb: "تطوير موقع إلكتروني",
+    serviceOptAds: "إعلانات ممولة",
+    serviceOptBoth: "موقع إلكتروني + إعلانات ممولة",
+    formDetails: "نبذة عن مشروعك",
+    formSubmit: "إرسال الطلب",
     formSuccess: "تم إرسال طلبك بنجاح!",
     formSuccessSub: "شكراً لتواصلك مع سمارت ميديا.. هنراجع التفاصيل ونرد عليك فوراً.",
+    errNameRequired: "يرجى إدخال الاسم (حرفين على الأقل)",
+    errPhoneRequired: "يرجى إدخال رقم هاتف / واتساب صحيح (7 أرقام على الأقل)",
+    errServiceRequired: "يرجى اختيار الخدمة المطلوبة",
+    errDetailsRequired: "يرجى كتابة تفاصيل مشروعك (10 حروف على الأقل)",
+
+    // Location
+    locationText: "نعمل مع عملائنا أونلاين من أي مكان",
 
     // Footer
     footerTagline: "تطوير مواقع عصرية وحملات إعلانية عالية العائد",
@@ -134,7 +146,7 @@ const translations: Record<Language, Record<string, string>> = {
     langSwitchBtn: "العربية",
 
     // Hero
-    badgeText: "Websites + Paid Advertising 🚀",
+    badgeText: "Websites + Paid Advertising",
     heroTitlePrefix: "Smart Media — One Place For All Your ",
     heroTitleHighlight: "Websites & Ads",
     heroSubtext:
@@ -186,7 +198,7 @@ const translations: Record<Language, Record<string, string>> = {
 
     // Projects
     projectsBadge: "Portfolio & Results",
-    projectsTitle: "Featured Client Projects 💼",
+    projectsTitle: "Featured Client Projects",
     projectsSubtext: "Real-world websites engineered for performance and ad campaigns launched for maximum engagement.",
     catAll: "All",
     catWeb: "Websites",
@@ -194,38 +206,50 @@ const translations: Record<Language, Record<string, string>> = {
 
     // Process EN
     processBadge: "Streamlined Workflow",
-    processTitle: "How We Deliver Your Project ⚙️",
+    processTitle: "How We Work & Deliver Your Project",
     processSubtext: "From understanding your business needs to design, development, live launch, and paid ad scaling.",
     step1Num: "01",
-    step1Title: "1. Scope & Business Discovery",
+    step1Title: "Scope & Business Discovery",
     step1Desc: "We discuss your goals, target audience, and select the optimal services and roadmap for your project.",
     step2Num: "02",
-    step2Title: "2. UI/UX Design & Prototyping",
+    step2Title: "UI/UX Design & Prototyping",
     step2Desc: "Crafting intuitive web interfaces tailored for seamless user engagement and conversion.",
     step3Num: "03",
-    step3Title: "3. Development & Analytics Integration",
+    step3Title: "Development & Analytics Integration",
     step3Desc: "Building a fast, responsive Next.js website and connecting analytics and pixel conversion tracking.",
     step4Num: "04",
-    step4Title: "4. Launch & Campaign Scaling",
+    step4Title: "Launch & Campaign Scaling",
     step4Desc: "Deploying your live web platform and launching targeted ad campaigns to acquire customers.",
 
     // FAQ
     faqBadge: "Clear Answers",
-    faqTitle: "Frequently Asked Questions 💡",
-    faqSubtext: "Everything you need to know about our web development and media buying services.",
+    faqTitle: "Questions You May Have",
+    faqSubtext: "Quick answers to common questions about our website development and paid advertising services.",
 
-    // Contact
+    // Contact EN
     contactBadge: "Direct Contact with Smart Media",
-    contactTitle: "Let's Scale Your Business Together! 🚀",
-    contactSubtext: "Tell us about your project and requirements. We'll respond within 2 hours with a custom roadmap.",
+    contactTitle: "Let's Scale Your Business Together!",
+    contactSubtext: "Tell us about your project idea and requirements, and we'll get in touch to discuss next steps.",
+    whatsappCaption: "Or contact us directly via WhatsApp",
     whatsappBtn: "Direct WhatsApp Chat",
-    formName: "Your Name / Business Name",
-    formPhone: "Phone / WhatsApp Number",
+    formName: "Name",
+    formPhone: "Phone / WhatsApp",
     formService: "Required Service",
-    formDetails: "Brief Project Details",
-    formSubmit: "Submit Request Now",
+    servicePlaceholder: "-- Select Required Service --",
+    serviceOptWeb: "Website Development",
+    serviceOptAds: "Paid Advertising",
+    serviceOptBoth: "Website + Paid Advertising",
+    formDetails: "About Your Project",
+    formSubmit: "Submit Request",
     formSuccess: "Request Sent Successfully!",
     formSuccessSub: "Thank you for reaching out to Smart Media. We will contact you shortly.",
+    errNameRequired: "Please enter your name (at least 2 characters)",
+    errPhoneRequired: "Please enter a valid phone/WhatsApp number (at least 7 digits)",
+    errServiceRequired: "Please select a required service",
+    errDetailsRequired: "Please enter project details (at least 10 characters)",
+
+    // Location
+    locationText: "We work with clients online worldwide",
 
     // Footer
     footerTagline: "Modern Web Development & High-ROI Media Buying",

@@ -85,7 +85,7 @@ export function Hero() {
             </div>
           </div>
 
-          {/* 3D Visual Floating Graphic: 100% Transparent Multiply Blend with Unique Filename */}
+          {/* Hero 3D Graphic: Transparent Floating Services Image */}
           <div className="lg:col-span-5 flex justify-center items-center relative">
             <div className="relative w-full max-w-xl aspect-[4/3] flex items-center justify-center animate-float-subtle">
               <Image

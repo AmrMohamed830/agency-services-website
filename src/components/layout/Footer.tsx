@@ -15,11 +15,11 @@ export function Footer() {
     <footer className="bg-[#F3ECE0] border-t border-[#E5DDD1] py-12 text-[#544D45]">
       <Container className="max-w-7xl">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-          {/* Brand & Tagline */}
+          {/* Brand & Tagline with New Logo */}
           <div className="flex items-center gap-3">
-            <div className="relative h-9 w-9 rounded-xl overflow-hidden border border-[#E5DDD1] bg-black">
+            <div className="relative h-9 w-9 rounded-xl overflow-hidden border border-[#E5DDD1] bg-[#070E24]">
               <Image
-                src="/images/smart-media-logo.jpg"
+                src="/images/smart-media-brand-logo-new.jpg"
                 alt="Smart Media Logo"
                 fill
                 className="object-cover"
@@ -37,24 +37,24 @@ export function Footer() {
 
           {/* Quick Links */}
           <div className="flex flex-wrap justify-center gap-6 text-xs font-bold text-[#544D45]">
-            <a href="#hero" className="hover:text-[#B85D43] transition-colors">
+            <Link href="/" className="hover:text-[#B85D43] transition-colors">
               {t("navHome")}
-            </a>
-            <a href="#services" className="hover:text-[#B85D43] transition-colors">
+            </Link>
+            <Link href="/#services" className="hover:text-[#B85D43] transition-colors">
               {t("navServices")}
-            </a>
-            <a href="#projects" className="hover:text-[#B85D43] transition-colors">
+            </Link>
+            <Link href="/work" className="hover:text-[#B85D43] transition-colors">
               {t("navWork")}
-            </a>
-            <a href="#process" className="hover:text-[#B85D43] transition-colors">
+            </Link>
+            <Link href="/#process" className="hover:text-[#B85D43] transition-colors">
               {t("navProcess")}
-            </a>
-            <a href="#faq" className="hover:text-[#B85D43] transition-colors">
+            </Link>
+            <Link href="/#faq" className="hover:text-[#B85D43] transition-colors">
               {t("navFaq")}
-            </a>
-            <a href="#contact" className="hover:text-[#B85D43] transition-colors">
+            </Link>
+            <Link href="/#contact" className="hover:text-[#B85D43] transition-colors">
               {t("navContact")}
-            </a>
+            </Link>
           </div>
 
           {/* Copyright */}

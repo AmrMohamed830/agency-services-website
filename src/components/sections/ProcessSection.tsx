@@ -4,9 +4,10 @@ import * as React from "react";
 import { Container } from "@/components/ui/Container";
 import { useLanguage } from "@/lib/LanguageContext";
 import { Sparkles } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export function ProcessSection() {
-  const { t } = useLanguage();
+  const { lang, t } = useLanguage();
 
   const steps = [
     { num: t("step1Num"), title: t("step1Title"), desc: t("step1Desc") },
@@ -34,12 +35,15 @@ export function ProcessSection() {
           </p>
         </div>
 
-        {/* Process Steps Grid */}
+        {/* Process Steps Grid: Dynamic LTR/RTL Text Alignment */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {steps.map((item, idx) => (
             <div
               key={idx}
-              className="bg-[#FDFBF7] border border-[#E5DDD1] rounded-3xl p-7 flex flex-col justify-between shadow-xs hover:shadow-md transition-all duration-300 relative group text-right"
+              className={cn(
+                "bg-[#FDFBF7] border border-[#E5DDD1] rounded-3xl p-7 flex flex-col justify-between shadow-xs hover:shadow-md transition-all duration-300 relative group",
+                lang === "ar" ? "text-right" : "text-left"
+              )}
             >
               <div>
                 <div className="h-12 w-12 rounded-2xl bg-[#F4EDE2] border border-[#E5DDD1] text-[#B85D43] font-black text-xl flex items-center justify-center mb-5 group-hover:bg-[#B85D43] group-hover:text-white transition-colors">
