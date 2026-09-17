@@ -5,18 +5,22 @@ export interface NavItem {
 
 export interface AgencyConfig {
   name: string;
+  arabicName: string;
   tagline: string;
   description: string;
+  heroHeadline: string;
+  heroHighlight: string;
+  heroSubtext: string;
+  badgeText: string;
   contactEmail: string;
   contactPhone?: string;
   whatsappUrl?: string;
-  calendlyUrl?: string;
   location: string;
   workingHours: string;
   socialLinks: {
     linkedin?: string;
     twitter?: string;
-    github?: string;
+    facebook?: string;
     instagram?: string;
   };
 }
@@ -27,15 +31,18 @@ export interface ServiceItem {
   shortDescription: string;
   fullDescription: string;
   iconName: string;
+  badge?: string;
   features: string[];
   deliverables: string[];
+  priceEstimate?: string;
+  deliveryTime?: string;
   highlight?: boolean;
 }
 
 export interface ProjectItem {
   id: string;
   title: string;
-  category: "Web Development" | "Landing Page" | "Media Buying" | "Full Stack";
+  category: string;
   clientIndustry: string;
   summary: string;
   challenge: string;
@@ -44,7 +51,7 @@ export interface ProjectItem {
   deliverables: string[];
   featured: boolean;
   linkUrl?: string;
-  imagePlaceholderUrl?: string;
+  imageUrl?: string;
 }
 
 export interface ProcessStep {
@@ -52,12 +59,6 @@ export interface ProcessStep {
   title: string;
   description: string;
   timeline?: string;
-}
-
-export interface ValueProp {
-  title: string;
-  description: string;
-  iconName: string;
 }
 
 export interface FAQItem {

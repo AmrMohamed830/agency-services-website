@@ -17,7 +17,11 @@ export const projectsData: ProjectItem[] = [
     solution:
       "Engineered a fast Next.js website with streamlined inquiry funnels and modern typography.",
     tags: ["Next.js", "TypeScript", "Tailwind CSS", "SEO"],
-    deliverables: ["Full Website Architecture", "Performance Optimization", "Lead Capture Form"],
+    deliverables: [
+      "Full Website Architecture",
+      "Performance Optimization",
+      "Lead Capture Form",
+    ],
     featured: true,
   },
   {
@@ -32,7 +36,11 @@ export const projectsData: ProjectItem[] = [
     solution:
       "Created a clear, punchy direct-response landing page with interactive feature comparisons.",
     tags: ["Landing Page", "CRO", "Direct Response", "Mobile First"],
-    deliverables: ["Landing Page UI/UX", "Speed Optimization", "Analytics Integration"],
+    deliverables: [
+      "Landing Page UI/UX",
+      "Speed Optimization",
+      "Analytics Integration",
+    ],
     featured: true,
   },
   {
@@ -47,7 +55,11 @@ export const projectsData: ProjectItem[] = [
     solution:
       "Built audience testing frameworks, localized ad creatives, and structured funnel tracking.",
     tags: ["Meta Ads", "Google Ads", "Conversion Tracking", "Creative Testing"],
-    deliverables: ["Campaign Setup", "Pixel / CAPI Configuration", "Weekly Reporting"],
+    deliverables: [
+      "Campaign Setup",
+      "Pixel / CAPI Configuration",
+      "Weekly Reporting",
+    ],
     featured: true,
   },
 ];

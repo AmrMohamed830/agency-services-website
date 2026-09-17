@@ -1,9 +1,10 @@
 import { NavItem } from "@/types";
 
 export const navItems: NavItem[] = [
-  { label: "Home", href: "/" },
-  { label: "Services", href: "/services" },
-  { label: "Our Work", href: "/work" },
-  { label: "About", href: "/about" },
-  { label: "Contact", href: "/contact" },
+  { label: "الرئيسية", href: "#hero" },
+  { label: "خدماتنا الأساسية", href: "#services" },
+  { label: "أعمالنا ونتايجنا", href: "#projects" },
+  { label: "إزاي بنشتغل", href: "#process" },
+  { label: "أسئلة شائعة", href: "#faq" },
+  { label: "تواصل معنا", href: "#contact" },
 ];
