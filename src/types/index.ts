@@ -15,6 +15,7 @@ export interface AgencyConfig {
   contactEmail: string;
   contactPhone?: string;
   whatsappUrl?: string;
+  partnerWhatsappUrl?: string;
   location: string;
   workingHours: string;
   socialLinks: {
@@ -41,17 +42,21 @@ export interface ServiceItem {
 
 export interface ProjectItem {
   id: string;
-  title: string;
-  category: string;
-  clientIndustry: string;
-  summary: string;
-  challenge: string;
-  solution: string;
+  type: "web" | "ads";
+  titleAr: string;
+  titleEn: string;
+  clientIndustryAr: string;
+  clientIndustryEn: string;
+  summaryAr: string;
+  summaryEn: string;
   tags: string[];
-  deliverables: string[];
+  metricsAr?: string;
+  metricsEn?: string;
+  deliverablesAr: string[];
+  deliverablesEn: string[];
   featured: boolean;
-  linkUrl?: string;
   imageUrl?: string;
+  demoUrl?: string;
 }
 
 export interface ProcessStep {
@@ -65,4 +70,10 @@ export interface FAQItem {
   question: string;
   answer: string;
   category?: string;
+}
+
+export interface ValueProp {
+  title: string;
+  description: string;
+  iconName: string;
 }

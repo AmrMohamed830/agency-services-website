@@ -1,7 +1,29 @@
 import { AgencyConfig } from "@/types";
 
-// ضع رقم الواتساب الحقيقي لشركة سمارت ميديا هنا (شاملاً كود الدولة بدون + مثل: 201000000000)
+// 1. رقم الواتساب الخاص بخدمة تطوير المواقع (Website Development) - رقمك أنت
 export const REAL_WHATSAPP_NUMBER = "201011018430";
+
+// 2. رقم الواتساب الخاص بخدمة الإعلانات الممولة / الميديا باير (Paid Advertising & Ads) - رقم صديقك (قم بتعديله برقم صديقك الحقيقي)
+export const PARTNER_WHATSAPP_NUMBER = "201000000000";
+
+/**
+ * دالة لتحديد رقم الواتساب المناسب بناءً على الخدمة التي اختارها العميل:
+ * - Website Development -> REAL_WHATSAPP_NUMBER (رقمك)
+ * - Paid Advertising / Ads / Both -> PARTNER_WHATSAPP_NUMBER (رقم صديقك)
+ */
+export function getWhatsappNumberByService(service: string): string {
+  if (
+    service === "إعلانات ممولة" ||
+    service === "موقع إلكتروني + إعلانات ممولة" ||
+    service === "Paid Advertising" ||
+    service === "Website + Paid Advertising" ||
+    service.includes("إعلانات") ||
+    service.includes("Ads")
+  ) {
+    return PARTNER_WHATSAPP_NUMBER;
+  }
+  return REAL_WHATSAPP_NUMBER;
+}
 
 export const agencyConfig: AgencyConfig = {
   name: "Smart Media",
@@ -17,6 +39,7 @@ export const agencyConfig: AgencyConfig = {
   contactEmail: "",
   contactPhone: `+${REAL_WHATSAPP_NUMBER}`,
   whatsappUrl: `https://wa.me/${REAL_WHATSAPP_NUMBER}`,
+  partnerWhatsappUrl: `https://wa.me/${PARTNER_WHATSAPP_NUMBER}`,
   location: "نعمل مع عملائنا أونلاين من أي مكان",
   workingHours: "من الأحد إلى الخميس: 9:00 صباحاً – 6:00 مساءً",
   socialLinks: {

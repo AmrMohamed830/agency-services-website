@@ -28,7 +28,7 @@ export function Navbar() {
     { label: t("navWork"), href: "/work" },
     { label: t("navProcess"), href: "/#process" },
     { label: t("navFaq"), href: "/#faq" },
-    { label: t("navContact"), href: "/#contact" },
+    { label: t("navContact"), href: "/contact" },
   ];
 
   return (
@@ -97,13 +97,13 @@ export function Navbar() {
           </button>
 
           {/* Primary CTA Button "تواصل معانا" */}
-          <a
-            href="#contact"
+          <Link
+            href="/contact"
             className="btn-terracotta inline-flex items-center gap-2 px-5 py-2.5 text-sm font-extrabold rounded-xl shadow-xs cursor-pointer"
           >
             <span>{t("contactBtn")}</span>
             {lang === "ar" ? <ArrowLeft className="h-4 w-4" /> : <ArrowRight className="h-4 w-4" />}
-          </a>
+          </Link>
         </div>
 
         {/* Mobile Menu Button & Language Switcher */}
@@ -152,7 +152,7 @@ export function Navbar() {
 
           <div className="mt-4 pt-4 border-t border-[#E5DDD1] flex flex-col gap-2">
             <Link
-              href="/#contact"
+              href="/contact"
               onClick={() => setIsOpen(false)}
               className="w-full btn-terracotta inline-flex items-center justify-center gap-2 py-3.5 text-base font-bold rounded-xl text-center"
             >

@@ -1,10 +1,10 @@
 "use client";
 
 import * as React from "react";
-import { agencyConfig } from "@/data/agency";
+import { agencyConfig, getWhatsappNumberByService } from "@/data/agency";
 import { Container } from "@/components/ui/Container";
 import { useLanguage } from "@/lib/LanguageContext";
-import { MessageCircle, Send, Globe, CheckCircle2 } from "lucide-react";
+import { MessageCircle, Send, Globe, CheckCircle2, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export function ContactSection() {
@@ -73,24 +73,50 @@ export function ContactSection() {
 
     setSubmitted(true);
 
+    // Determine target WhatsApp number dynamically based on selected service:
+    // - Website Development -> REAL_WHATSAPP_NUMBER (Your number)
+    // - Paid Advertising / Both -> PARTNER_WHATSAPP_NUMBER (Partner's number)
+    const targetWhatsappNumber = getWhatsappNumberByService(formData.service);
+
     // Build pre-filled WhatsApp message with client inputs
     const whatsappMessage =
       lang === "ar"
-        ? `أهلاً سمارت ميديا 👋\n\n📌 طلب جديد من الموقع:\n• الاسم: ${formData.name}\n• رقم الهاتف/الواتساب: ${formData.phone}\n• الخدمة المطلوبة: ${formData.service}\n• تفاصيل المشروع: ${formData.details}`
+        ? `أهلاً سمارت ميديا 👋\n\n📌 طلب جديد من الصفحة:\n• الاسم: ${formData.name}\n• رقم الهاتف/الواتساب: ${formData.phone}\n• الخدمة المطلوبة: ${formData.service}\n• تفاصيل المشروع: ${formData.details}`
         : `Hello Smart Media 👋\n\n📌 New Project Request:\n• Name: ${formData.name}\n• Phone/WhatsApp: ${formData.phone}\n• Service Required: ${formData.service}\n• Project Details: ${formData.details}`;
 
-    const whatsappUrl = `${agencyConfig.whatsappUrl}?text=${encodeURIComponent(whatsappMessage)}`;
+    const whatsappUrl = `https://wa.me/${targetWhatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
 
     // Redirect directly to WhatsApp with pre-filled message
     window.open(whatsappUrl, "_blank");
   };
 
   return (
-    <section id="contact" className="py-12 sm:py-20">
+    <section id="contact" className="py-8 sm:py-16">
       <Container className="max-w-5xl">
+        {/* Contact Page Hero Header */}
+        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#EFE8DC] border border-[#E2D6C5] text-xs sm:text-sm font-bold text-[#876E57] mb-4 shadow-2xs">
+            <Sparkles className="h-3.5 w-3.5 text-[#B85D43]" />
+            <span>{t("contactBadge")}</span>
+          </div>
+
+          <h1 className="text-3xl sm:text-5xl font-black text-[#2D2926] leading-tight tracking-tight">
+            {t("contactHeroTitle")}
+          </h1>
+
+          <p className="mt-4 text-base sm:text-lg text-[#685F56] leading-relaxed max-w-2xl mx-auto">
+            {t("contactHeroSubtext")}
+          </p>
+
+          <div className="mt-6 inline-flex items-center gap-2 text-sm sm:text-base font-extrabold text-[#B85D43] bg-[#F4EDE2] border border-[#E5DDD1] px-5 py-2.5 rounded-full shadow-2xs animate-bounce-subtle">
+            <span>{t("contactHeroCallout")}</span>
+          </div>
+        </div>
+
+        {/* Contact Form Card */}
         <div className="bg-[#FDFBF7] border border-[#E5DDD1] rounded-3xl p-6 sm:p-10 shadow-lg shadow-[#46321E]/5">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-            {/* Column 1: Contact Info & WhatsApp Button in original location (Aligned on bottom horizontal line) */}
+            {/* Column 1: Contact Info & Instant WhatsApp Button */}
             <div
               className={cn(
                 "lg:col-span-5 flex flex-col justify-between h-full",
@@ -100,10 +126,10 @@ export function ContactSection() {
               <div>
                 <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#EFE8DC] text-xs font-bold text-[#876E57] mb-3">
                   <MessageCircle className="h-3.5 w-3.5 text-[#B85D43]" />
-                  <span>{t("contactBadge")}</span>
+                  <span>Smart Media</span>
                 </div>
 
-                <h2 className="text-2xl sm:text-4xl font-extrabold text-[#2D2926] leading-tight">
+                <h2 className="text-2xl sm:text-3xl font-extrabold text-[#2D2926] leading-tight">
                   {t("contactTitle")}
                 </h2>
 
@@ -122,7 +148,7 @@ export function ContactSection() {
                 </div>
               </div>
 
-              {/* Instant WhatsApp Button in Original Location with Vibrant Green (#25D366) on exact same horizontal line */}
+              {/* Instant WhatsApp Button with Vibrant Green */}
               <div className="mt-8 pt-6 border-t border-[#EAE2D5]">
                 <p className="text-xs font-bold text-[#8C7662] mb-3">
                   {t("whatsappCaption")}
@@ -139,7 +165,7 @@ export function ContactSection() {
               </div>
             </div>
 
-            {/* Column 2: Quick Request Form Column (Submit Button on exact same bottom horizontal line) */}
+            {/* Column 2: Quick Request Form Column */}
             <div
               className={cn(
                 "lg:col-span-7 bg-[#F7F2EA] border border-[#EBE3D7] rounded-2xl p-6 sm:p-8 flex flex-col justify-between h-full",
@@ -275,7 +301,7 @@ export function ContactSection() {
                     </div>
                   </div>
 
-                  {/* Submit Request Button (Terracotta) on exact same horizontal bottom line */}
+                  {/* Submit Request Button (Terracotta) */}
                   <div className="pt-2">
                     <button
                       type="submit"

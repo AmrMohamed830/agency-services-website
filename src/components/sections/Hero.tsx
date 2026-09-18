@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowLeft, ArrowRight, Code2, TrendingUp } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { useLanguage } from "@/lib/LanguageContext";
@@ -51,13 +52,13 @@ export function Hero() {
                 lang === "ar" ? "justify-center lg:justify-start" : "justify-center lg:justify-start"
               )}
             >
-              <a
-                href="#contact"
+              <Link
+                href="/contact"
                 className="w-full sm:w-auto btn-terracotta inline-flex items-center justify-center gap-2.5 px-8 py-4 text-base font-extrabold rounded-2xl shadow-md cursor-pointer"
               >
                 <span>{t("startProjectBtn")}</span>
                 {lang === "ar" ? <ArrowLeft className="h-5 w-5" /> : <ArrowRight className="h-5 w-5" />}
-              </a>
+              </Link>
 
               <a
                 href="#services"

@@ -76,10 +76,13 @@ const translations: Record<Language, Record<string, string>> = {
 
     // Projects
     projectsBadge: "أعمالنا ونتايجنا",
-    projectsTitle: "أبرز الأعمال والمشاريع المميزة",
-    projectsSubtext: "نماذج واقعية لمواقع اتصممت وحملات إعلانية اتنفذت وحققت مبيعات وحجوزات حقيقية.",
-    catAll: "الكل",
-    catWeb: "تطوير مواقع",
+    workHeroTitle: "مشاريع حقيقية صممناها وطوّرناها وساعدنا أصحابها على النمو.",
+    workHeroSubtext: "استكشف مجموعة من أعمالنا في تطوير المواقع والتسويق الرقمي، وتعرّف على طريقة تنفيذنا للمشاريع من الفكرة وحتى الإطلاق.",
+    projectsTitle: "مشاريع حقيقية صممناها وطوّرناها وساعدنا أصحابها على النمو.",
+    projectsSubtext: "استكشف مجموعة من أعمالنا في تطوير المواقع والتسويق الرقمي، وتعرّف على طريقة تنفيذنا للمشاريع من الفكرة وحتى الإطلاق.",
+    catAll: "جميع الأعمال",
+    catWeb: "تطوير المواقع",
+    catAds: "الإعلانات الممولة",
     catLanding: "صفحات هبوط",
 
     // Process (إزاي بنشتغل معاك وننفذ طلبك؟)
@@ -103,6 +106,11 @@ const translations: Record<Language, Record<string, string>> = {
     faqBadge: "إجابات مباشرة",
     faqTitle: "أسئلة بتيجي في بالك",
     faqSubtext: "إليك إجابات لأهم الأسئلة الشائعة حول خدماتنا في تطوير المواقع والإعلانات الممولة.",
+
+    // Contact Page Hero (Approved Final Copy)
+    contactHeroTitle: "عندك مشروع؟ خلينا نبدأ من هنا.",
+    contactHeroSubtext: "احكيلنا عن فكرتك واحتياج مشروعك، وإحنا هنساعدك تحدد الخدمة والخطوات المناسبة لتنفيذها.",
+    contactHeroCallout: "ابدأ مشروعك معنا ↓",
 
     // Contact (Approved Final Copy)
     contactBadge: "تواصل مباشر مع سمارت ميديا",
@@ -198,10 +206,13 @@ const translations: Record<Language, Record<string, string>> = {
 
     // Projects
     projectsBadge: "Portfolio & Results",
-    projectsTitle: "Featured Client Projects",
-    projectsSubtext: "Real-world websites engineered for performance and ad campaigns launched for maximum engagement.",
-    catAll: "All",
-    catWeb: "Websites",
+    workHeroTitle: "Real projects we designed, developed, and helped their owners grow.",
+    workHeroSubtext: "Explore our collection of work in web development and digital marketing, and learn how we execute projects from concept to launch.",
+    projectsTitle: "Real projects we designed, developed, and helped their owners grow.",
+    projectsSubtext: "Explore our collection of work in web development and digital marketing, and learn how we execute projects from concept to launch.",
+    catAll: "All Work",
+    catWeb: "Website Development",
+    catAds: "Paid Advertising",
     catLanding: "Landing Pages",
 
     // Process EN
@@ -225,6 +236,11 @@ const translations: Record<Language, Record<string, string>> = {
     faqBadge: "Clear Answers",
     faqTitle: "Questions You May Have",
     faqSubtext: "Quick answers to common questions about our website development and paid advertising services.",
+
+    // Contact Page Hero EN
+    contactHeroTitle: "Have a project? Let's start from here.",
+    contactHeroSubtext: "Tell us about your idea and project needs, and we'll help you define the right service and steps to execute it.",
+    contactHeroCallout: "Start your project with us ↓",
 
     // Contact EN
     contactBadge: "Direct Contact with Smart Media",

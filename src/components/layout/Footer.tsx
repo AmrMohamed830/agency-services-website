@@ -52,7 +52,7 @@ export function Footer() {
             <Link href="/#faq" className="hover:text-[#B85D43] transition-colors">
               {t("navFaq")}
             </Link>
-            <Link href="/#contact" className="hover:text-[#B85D43] transition-colors">
+            <Link href="/contact" className="hover:text-[#B85D43] transition-colors">
               {t("navContact")}
             </Link>
           </div>
