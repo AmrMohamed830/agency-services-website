@@ -25,6 +25,12 @@ export function getWhatsappNumberByService(service: string): string {
   return REAL_WHATSAPP_NUMBER;
 }
 
+export function getWhatsappUrlByService(service: string, message?: string): string {
+  const number = getWhatsappNumberByService(service);
+  const baseUrl = `https://wa.me/${number}`;
+  return message ? `${baseUrl}?text=${encodeURIComponent(message)}` : baseUrl;
+}
+
 export const agencyConfig: AgencyConfig = {
   name: "Smart Media",
   arabicName: "سمارت ميديا",
@@ -35,7 +41,7 @@ export const agencyConfig: AgencyConfig = {
   heroHighlight: "مواقعك وإعلاناتك",
   heroSubtext:
     "بنصمم ونبني مواقع سريعة وعصرية باستخدام Next.js، وبندير حملات إعلانية ممولة ومستهدفة على فيسبوك وجوجل وتيك توك — كل اللي محتاجه مشروعك للنمو الرقمي، في مكان واحد وبدون تعقيد.",
-  badgeText: "Websites + Paid Advertising",
+  badgeText: "تطوير مواقع + إعلانات ممولة",
   contactEmail: "",
   contactPhone: `+${REAL_WHATSAPP_NUMBER}`,
   whatsappUrl: `https://wa.me/${REAL_WHATSAPP_NUMBER}`,

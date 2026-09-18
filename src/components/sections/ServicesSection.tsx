@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { agencyConfig } from "@/data/agency";
+import { getWhatsappUrlByService } from "@/data/agency";
 import { Container } from "@/components/ui/Container";
 import { useLanguage } from "@/lib/LanguageContext";
 import { ArrowLeft, ArrowRight, CheckCircle, Sparkles } from "lucide-react";
@@ -27,6 +27,19 @@ export function ServicesSection() {
     t("capMonitor"),
     t("capReport"),
   ];
+
+  // Pre-filled WhatsApp URLs for each service using valid ?text= parameter and dynamic recipient number
+  const webWhatsappMsg =
+    lang === "ar"
+      ? "أهلاً سمارت ميديا 👋، حابب أستفسر عن تطوير موقع إلكتروني"
+      : "Hello Smart Media 👋, I would like to inquire about Website Development";
+  const webWhatsappUrl = getWhatsappUrlByService("تطوير موقع إلكتروني", webWhatsappMsg);
+
+  const adsWhatsappMsg =
+    lang === "ar"
+      ? "أهلاً سمارت ميديا 👋، حابب أستفسر عن إدارة وتأهيل الحملات الإعلانية الممولة"
+      : "Hello Smart Media 👋, I would like to inquire about Paid Advertising Campaigns";
+  const adsWhatsappUrl = getWhatsappUrlByService("إعلانات ممولة", adsWhatsappMsg);
 
   return (
     <section id="services" className="py-14 sm:py-24 bg-[#FAF6F0]/70 border-y border-[#EAE2D5]">
@@ -78,11 +91,7 @@ export function ServicesSection() {
 
                 <div className="pt-4">
                   <a
-                    href={`${agencyConfig.whatsappUrl}&text=${encodeURIComponent(
-                      lang === "ar"
-                        ? "أهلاً سمارت ميديا، حابب أستفسر عن تطوير موقع إلكتروني"
-                        : "Hello Smart Media, I would like to inquire about Website Development"
-                    )}`}
+                    href={webWhatsappUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn-terracotta inline-flex items-center gap-2.5 px-6 py-3.5 text-sm font-extrabold rounded-2xl shadow-xs cursor-pointer"
@@ -151,11 +160,7 @@ export function ServicesSection() {
 
                 <div className="pt-4">
                   <a
-                    href={`${agencyConfig.whatsappUrl}&text=${encodeURIComponent(
-                      lang === "ar"
-                        ? "أهلاً سمارت ميديا، حابب أستفسر عن الحملات الإعلانية"
-                        : "Hello Smart Media, I would like to inquire about Paid Advertising"
-                    )}`}
+                    href={adsWhatsappUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn-terracotta inline-flex items-center gap-2.5 px-6 py-3.5 text-sm font-extrabold rounded-2xl shadow-xs cursor-pointer"

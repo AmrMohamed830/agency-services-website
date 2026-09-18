@@ -24,7 +24,7 @@ const translations: Record<Language, Record<string, string>> = {
     langSwitchBtn: "English",
 
     // Hero
-    badgeText: "Websites + Paid Advertising",
+    badgeText: "تطوير مواقع + إعلانات ممولة",
     heroTitlePrefix: "سمارت ميديا — مكان واحد لكل ",
     heroTitleHighlight: "مواقعك وإعلاناتك",
     heroSubtext:
@@ -90,7 +90,7 @@ const translations: Record<Language, Record<string, string>> = {
     processTitle: "إزاي بنشتغل معاك وننفذ طلبك؟",
     processSubtext: "من أول فهم احتياج مشروعك، مرورًا بالتصميم والتطوير، لحد إطلاق موقعك وتشغيل حملاتك الإعلانية.",
     step1Num: "01",
-    step1Title: "بنفهم مشروعك وااحتياجك",
+    step1Title: "بنفهم مشروعك واحتياجك",
     step1Desc: "بنتكلم معاك ونفهم طبيعة مشروعك، أهدافك، والجمهور المستهدف، ونحدد أنسب الخدمات والخطوات لتنفيذ طلبك.",
     step2Num: "02",
     step2Title: "التصميم وتجربة المستخدم",

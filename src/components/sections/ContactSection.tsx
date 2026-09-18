@@ -4,11 +4,10 @@ import * as React from "react";
 import { agencyConfig, getWhatsappNumberByService } from "@/data/agency";
 import { Container } from "@/components/ui/Container";
 import { useLanguage } from "@/lib/LanguageContext";
-import { MessageCircle, Send, Globe, CheckCircle2, Sparkles } from "lucide-react";
+import { MessageCircle, Send, Globe, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export function ContactSection() {
-  const [submitted, setSubmitted] = React.useState(false);
   const { lang, t } = useLanguage();
   const [formData, setFormData] = React.useState({
     name: "",
@@ -70,8 +69,6 @@ export function ContactSection() {
     if (!validate()) {
       return;
     }
-
-    setSubmitted(true);
 
     // Determine target WhatsApp number dynamically based on selected service:
     // - Website Development -> REAL_WHATSAPP_NUMBER (Your number)
@@ -172,18 +169,7 @@ export function ContactSection() {
                 lang === "ar" ? "text-right" : "text-left"
               )}
             >
-              {submitted ? (
-                <div className="text-center py-10 my-auto">
-                  <div className="h-14 w-14 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto mb-4 border border-emerald-300">
-                    <CheckCircle2 className="h-8 w-8" />
-                  </div>
-                  <h3 className="text-xl font-bold text-[#2D2926] mb-2">{t("formSuccess")}</h3>
-                  <p className="text-sm text-[#685F56] max-w-sm mx-auto">
-                    {t("formSuccessSub")}
-                  </p>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} noValidate className="space-y-4 flex flex-col justify-between h-full">
+              <form onSubmit={handleSubmit} noValidate className="space-y-4 flex flex-col justify-between h-full">
                   <div className="space-y-4">
                     {/* Field 1: Name */}
                     <div>
@@ -312,7 +298,6 @@ export function ContactSection() {
                     </button>
                   </div>
                 </form>
-              )}
             </div>
           </div>
         </div>

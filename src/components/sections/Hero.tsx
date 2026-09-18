@@ -27,7 +27,7 @@ export function Hero() {
             {/* Step 1: Who We Are & What We Do Badge */}
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#EFE8DC] border border-[#E2D6C5] text-xs sm:text-sm font-bold text-[#876E57] mb-5">
               <span className="bg-[#B85D43] text-white text-[10px] px-2.5 py-0.5 rounded-full font-bold">
-                Smart Media
+                {lang === "ar" ? "سمارت ميديا" : "Smart Media"}
               </span>
               <span>{t("badgeText")}</span>
             </div>
