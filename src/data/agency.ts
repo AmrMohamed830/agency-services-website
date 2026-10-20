@@ -1,15 +1,15 @@
 import { AgencyConfig } from "@/types";
 
-// 1. رقم الواتساب الخاص بخدمة تطوير المواقع (Website Development) - رقمك أنت
+// 1. رقم الواتساب الخاص بخدمة تطوير المواقع (Website Development)
 export const REAL_WHATSAPP_NUMBER = "201011018430";
 
-// 2. رقم الواتساب الخاص بخدمة الإعلانات الممولة / الميديا باير (Paid Advertising & Ads) - رقم صديقك (قم بتعديله برقم صديقك الحقيقي)
-export const PARTNER_WHATSAPP_NUMBER = "201000000000";
+// 2. رقم الواتساب الخاص بخدمة الإعلانات الممولة وخدمة (موقع + إعلانات ممولة)
+export const PARTNER_WHATSAPP_NUMBER = "201515443232";
 
 /**
  * دالة لتحديد رقم الواتساب المناسب بناءً على الخدمة التي اختارها العميل:
- * - Website Development -> REAL_WHATSAPP_NUMBER (رقمك)
- * - Paid Advertising / Ads / Both -> PARTNER_WHATSAPP_NUMBER (رقم صديقك)
+ * - تطوير موقع إلكتروني -> REAL_WHATSAPP_NUMBER (201011018430)
+ * - إعلانات ممولة أو (موقع + إعلانات ممولة) -> PARTNER_WHATSAPP_NUMBER (201515443232)
  */
 export function getWhatsappNumberByService(service: string): string {
   if (
