@@ -26,15 +26,18 @@ export function Footer() {
           </div>
 
           {/* Quick Links */}
-          <div className="flex flex-wrap justify-center gap-6 text-xs font-bold text-slate-400">
+          <div className="flex flex-wrap justify-center gap-4 sm:gap-6 text-xs font-bold text-slate-400">
             <Link href="/" className="hover:text-cyan-300 transition-colors">
               {t("navHome")}
             </Link>
             <Link href="/#services" className="hover:text-cyan-300 transition-colors">
               {t("navServices")}
             </Link>
-            <Link href="/work" className="hover:text-cyan-300 transition-colors">
-              {t("navWork")}
+            <Link href="/work/web-development" className="hover:text-cyan-300 transition-colors">
+              {t("navWorkWeb")}
+            </Link>
+            <Link href="/work/media-buying" className="hover:text-purple-300 transition-colors">
+              {t("navWorkAds")}
             </Link>
             <Link href="/#process" className="hover:text-cyan-300 transition-colors">
               {t("navProcess")}

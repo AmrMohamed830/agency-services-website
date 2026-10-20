@@ -1,6 +1,14 @@
+export interface NavDropdownItem {
+  label: string;
+  href: string;
+  description?: string;
+  iconName?: "web" | "ads";
+}
+
 export interface NavItem {
   label: string;
   href: string;
+  dropdown?: NavDropdownItem[];
 }
 
 export interface AgencyConfig {
@@ -57,6 +65,29 @@ export interface ProjectItem {
   featured: boolean;
   imageUrl?: string;
   demoUrl?: string;
+}
+
+export interface WebProjectItem extends ProjectItem {
+  type: "web";
+  categoryKey: "ecommerce" | "saas" | "corporate" | "landing";
+  categoryAr: string;
+  categoryEn: string;
+  liveStatus: "live" | "showcase";
+  techStack: string[];
+}
+
+export interface MediaBuyingProjectItem extends ProjectItem {
+  type: "ads";
+  platform: "meta" | "tiktok" | "google";
+  platformNameAr: string;
+  platformNameEn: string;
+  videoDuration: string;
+  aspectRatio: "9:16" | "16:9";
+  creativeFormatAr: string;
+  creativeFormatEn: string;
+  objectiveAr: string;
+  objectiveEn: string;
+  videoPlaceholderUrl?: string;
 }
 
 export interface ProcessStep {

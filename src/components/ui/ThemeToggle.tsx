@@ -13,13 +13,18 @@ export function ThemeToggle() {
       (!("theme" in localStorage) &&
         window.matchMedia("(prefers-color-scheme: dark)").matches);
 
-    setIsDark(isDarkMode);
-    setMounted(true);
     if (isDarkMode) {
       document.documentElement.classList.add("dark");
     } else {
       document.documentElement.classList.remove("dark");
     }
+
+    const timer = setTimeout(() => {
+      setIsDark(isDarkMode);
+      setMounted(true);
+    }, 0);
+
+    return () => clearTimeout(timer);
   }, []);
 
   const toggleTheme = () => {
