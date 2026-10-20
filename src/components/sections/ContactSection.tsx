@@ -249,14 +249,22 @@ export function ContactSection() {
                       </label>
                       <div
                         className={cn(
-                          "flex items-stretch rounded-xl bg-[#030818] border transition-all overflow-hidden",
+                          "flex items-center rounded-xl bg-[#030818] border transition-all overflow-hidden",
                           errors.phone
                             ? "border-rose-500 focus-within:ring-2 focus-within:ring-rose-500/30"
                             : "border-blue-500/25 focus-within:border-cyan-400 focus-within:ring-2 focus-within:ring-cyan-400/20"
                         )}
                       >
-                        {/* Country Key Selector */}
-                        <div className="relative flex items-center shrink-0 border-e border-white/10 bg-[#07122C]/85 hover:bg-[#0A1A3E] transition-colors">
+                        {/* Compact Country Key Selector (Flag + Dial Code only on badge, full name in options) */}
+                        <div className="relative shrink-0 flex items-center justify-center border-e border-white/10 bg-[#07122C]/90 hover:bg-[#0A1A3E] transition-colors w-20 sm:w-24 h-11 sm:h-12">
+                          {/* Visual Badge */}
+                          <div className="flex items-center justify-center gap-1 text-white text-xs sm:text-sm font-bold select-none pointer-events-none px-1.5">
+                            <span className="text-sm sm:text-base leading-none">{selectedCountry.flag}</span>
+                            <span className="font-mono text-cyan-300 text-xs sm:text-sm">{selectedCountry.code}</span>
+                            <ChevronDown className="h-3 w-3 text-cyan-400 shrink-0" />
+                          </div>
+
+                          {/* Native Select overlaid with 100% width/height */}
                           <select
                             aria-label={lang === "ar" ? "مفتاح الدولة" : "Country code"}
                             value={selectedCountry.code}
@@ -266,7 +274,7 @@ export function ContactSection() {
                                 COUNTRY_CODES[0];
                               setSelectedCountry(item);
                             }}
-                            className="appearance-none bg-transparent text-white text-xs sm:text-sm font-bold py-3 ps-3 pe-7 cursor-pointer focus:outline-none"
+                            className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
                           >
                             {COUNTRY_CODES.map((c) => (
                               <option
@@ -278,19 +286,16 @@ export function ContactSection() {
                               </option>
                             ))}
                           </select>
-                          <div className="pointer-events-none absolute inset-e-2 text-cyan-400">
-                            <ChevronDown className="h-3.5 w-3.5" />
-                          </div>
                         </div>
 
-                        {/* Phone Number Input */}
+                        {/* Phone Number Input - flex-1 min-w-0 for maximum space and clean typing on mobile */}
                         <input
                           type="tel"
                           dir="ltr"
                           placeholder={selectedCountry.placeholder}
                           value={formData.phone}
                           onChange={(e) => handleChange("phone", e.target.value)}
-                          className="w-full px-4 py-3 text-sm bg-transparent text-white placeholder:text-slate-500 focus:outline-none font-mono"
+                          className="flex-1 min-w-0 px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base bg-transparent text-white placeholder:text-slate-500 focus:outline-none font-mono tracking-wide"
                         />
                       </div>
                       {errors.phone && (
