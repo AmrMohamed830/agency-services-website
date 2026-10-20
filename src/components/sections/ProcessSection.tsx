@@ -18,7 +18,7 @@ export function ProcessSection() {
   ];
 
   return (
-    <section id="process" className="py-16 sm:py-24 bg-[#060B18] border-t border-white/[0.04] relative">
+    <section id="process" className="py-16 sm:py-24 bg-[#060B18] border-t border-white/[0.04] relative overflow-hidden">
       {/* Ambient background glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-blue-600/10 rounded-full blur-[140px] pointer-events-none" />
 

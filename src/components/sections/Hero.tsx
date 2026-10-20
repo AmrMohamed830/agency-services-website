@@ -157,26 +157,26 @@ export function Hero() {
           </div>
 
           {/* Column 2 (Visual): Larger Video Container filling visual space (50% desktop split) */}
-          <div className="lg:col-span-6 flex justify-center items-center relative w-full">
+          <div className="lg:col-span-6 flex justify-center items-center relative w-full overflow-hidden sm:overflow-visible">
             <ScrollReveal direction="left" delay={200} priority={true} className="w-full">
               <div className="relative group w-full">
                 {/* 1. Colorful Gradient Glow behind the video */}
                 <div
-                  className="absolute -inset-4 sm:-inset-6 rounded-[36px] bg-gradient-to-r from-cyan-500/35 via-blue-600/40 to-purple-600/40 blur-2xl opacity-75 group-hover:opacity-100 transition-all duration-700 -z-10"
+                  className="absolute -inset-3 sm:-inset-6 rounded-3xl bg-linear-to-r from-cyan-500/35 via-blue-600/40 to-purple-600/40 blur-2xl opacity-75 group-hover:opacity-100 transition-all duration-700 -z-10"
                   aria-hidden="true"
                 />
                 <div
-                  className="absolute -top-10 -right-10 w-56 h-56 bg-cyan-400/25 rounded-full blur-3xl -z-20 pointer-events-none"
+                  className="absolute -top-4 -right-4 sm:-top-10 sm:-right-10 w-40 sm:w-56 h-40 sm:h-56 bg-cyan-400/25 rounded-full blur-3xl -z-20 pointer-events-none"
                   aria-hidden="true"
                 />
                 <div
-                  className="absolute -bottom-10 -left-10 w-56 h-56 bg-purple-600/30 rounded-full blur-3xl -z-20 pointer-events-none"
+                  className="absolute -bottom-4 -left-4 sm:-bottom-10 sm:-left-10 w-40 sm:w-56 h-40 sm:h-56 bg-purple-600/30 rounded-full blur-3xl -z-20 pointer-events-none"
                   aria-hidden="true"
                 />
 
                 {/* 2. Video Container with Smooth Rounded Corners and Balanced Sizing */}
-                <div className="relative rounded-[26px] sm:rounded-[30px] overflow-hidden p-[2px] bg-gradient-to-b from-cyan-400/40 via-blue-500/20 to-purple-500/40 shadow-2xl shadow-blue-950/70 w-full">
-                  <div className="relative w-full aspect-[16/11] sm:aspect-[16/10] lg:aspect-[4/3] xl:aspect-[16/11] min-h-[300px] sm:min-h-[360px] lg:min-h-[420px] rounded-[24px] sm:rounded-[28px] overflow-hidden bg-[#060B1C]">
+                <div className="relative rounded-3xl overflow-hidden p-0.5 bg-linear-to-b from-cyan-400/40 via-blue-500/20 to-purple-500/40 shadow-2xl shadow-blue-950/70 w-full">
+                  <div className="relative w-full aspect-16/11 sm:aspect-16/10 lg:aspect-4/3 xl:aspect-16/11 min-h-[300px] sm:min-h-90 lg:min-h-105 rounded-3xl overflow-hidden bg-[#060B1C]">
                     <video
                       autoPlay
                       loop

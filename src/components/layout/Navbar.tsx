@@ -22,6 +22,17 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  React.useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
   const navItems = [
     { label: t("navHome"), href: "/" },
     { label: t("navServices"), href: "/#services" },
@@ -31,10 +42,10 @@ export function Navbar() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 w-full px-4 sm:px-8 py-3 transition-all duration-300">
+    <header className="sticky top-0 z-50 w-full max-w-full px-3 sm:px-6 lg:px-8 py-2.5 sm:py-3 transition-all duration-300">
       <div
         className={cn(
-          "max-w-7xl mx-auto rounded-2xl transition-all duration-300 px-4 sm:px-6 py-2.5 flex items-center justify-between border",
+          "max-w-7xl mx-auto rounded-2xl transition-all duration-300 px-3 sm:px-6 py-2 sm:py-2.5 flex items-center justify-between border w-full",
           isScrolled
             ? "bg-[#060B1E]/90 backdrop-blur-md border-blue-500/20 shadow-xl shadow-black/40"
             : "bg-[#060B1E]/70 backdrop-blur-sm border-white/10 shadow-lg shadow-black/20"
@@ -62,7 +73,7 @@ export function Navbar() {
                 className="px-3.5 py-1.5 text-sm font-bold rounded-xl transition-all duration-200 text-slate-300 hover:text-white hover:bg-white/10 relative group"
               >
                 <span>{item.label}</span>
-                <span className="absolute inset-x-3 -bottom-0.5 h-[2px] bg-gradient-to-r from-cyan-400 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity rounded-full" />
+                <span className="absolute inset-x-3 -bottom-0.5 h-0.5 bg-linear-to-r from-cyan-400 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity rounded-full" />
               </Link>
             );
           })}
@@ -112,40 +123,47 @@ export function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Drawer Menu */}
+      {/* Mobile Drawer Menu with Backdrop Overlay */}
       {isOpen && (
-        <div className="fixed inset-x-4 top-20 z-50 flex flex-col bg-[#070D22]/95 backdrop-blur-xl border border-blue-500/25 rounded-2xl p-5 md:hidden shadow-2xl animate-in fade-in duration-200">
-          <nav className="flex flex-col space-y-1">
-            {navItems.map((item) => {
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  onClick={() => setIsOpen(false)}
-                  className="flex items-center justify-between px-4 py-3 text-base font-bold text-slate-200 rounded-xl hover:bg-white/10 transition-colors"
-                >
-                  <span>{item.label}</span>
-                  {lang === "ar" ? (
-                    <ArrowLeft className="h-4 w-4 text-cyan-400" />
-                  ) : (
-                    <ArrowRight className="h-4 w-4 text-cyan-400" />
-                  )}
-                </Link>
-              );
-            })}
-          </nav>
+        <>
+          <div
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 md:hidden"
+            onClick={() => setIsOpen(false)}
+            aria-hidden="true"
+          />
+          <div className="fixed left-3 right-3 sm:left-6 sm:right-6 top-[62px] sm:top-[70px] z-50 flex flex-col bg-[#070D22]/98 backdrop-blur-2xl border border-blue-500/25 rounded-2xl p-4 sm:p-5 md:hidden shadow-2xl animate-in fade-in duration-200">
+            <nav className="flex flex-col space-y-1">
+              {navItems.map((item) => {
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setIsOpen(false)}
+                    className="flex items-center justify-between px-4 py-3 text-base font-bold text-slate-200 rounded-xl hover:bg-white/10 transition-colors"
+                  >
+                    <span>{item.label}</span>
+                    {lang === "ar" ? (
+                      <ArrowLeft className="h-4 w-4 text-cyan-400" />
+                    ) : (
+                      <ArrowRight className="h-4 w-4 text-cyan-400" />
+                    )}
+                  </Link>
+                );
+              })}
+            </nav>
 
-          <div className="mt-4 pt-4 border-t border-white/10 flex flex-col gap-2">
-            <Link
-              href="/contact"
-              onClick={() => setIsOpen(false)}
-              className="w-full btn-tech-primary inline-flex items-center justify-center gap-2 py-2.5 text-sm font-bold rounded-xl text-center"
-            >
-              <span>{t("contactBtn")}</span>
-              {lang === "ar" ? <ArrowLeft className="h-4 w-4" /> : <ArrowRight className="h-4 w-4" />}
-            </Link>
+            <div className="mt-4 pt-4 border-t border-white/10 flex flex-col gap-2">
+              <Link
+                href="/contact"
+                onClick={() => setIsOpen(false)}
+                className="w-full btn-tech-primary inline-flex items-center justify-center gap-2 py-2.5 text-sm font-bold rounded-xl text-center"
+              >
+                <span>{t("contactBtn")}</span>
+                {lang === "ar" ? <ArrowLeft className="h-4 w-4" /> : <ArrowRight className="h-4 w-4" />}
+              </Link>
+            </div>
           </div>
-        </div>
+        </>
       )}
     </header>
   );

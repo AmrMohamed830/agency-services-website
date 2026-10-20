@@ -76,9 +76,9 @@ export function ScrollReveal({
       case "down":
         return `translate3d(0, -${distance}px, 0)`;
       case "left":
-        return `translate3d(${distance}px, 0, 0)`;
       case "right":
-        return `translate3d(-${distance}px, 0, 0)`;
+        // Use gentle vertical translation to strictly avoid mobile horizontal overflow
+        return `translate3d(0, ${distance}px, 0)`;
       case "fade":
       default:
         return "translate3d(0, 0, 0)";

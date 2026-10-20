@@ -48,7 +48,7 @@ export function ServicesSection() {
   const adsWhatsappUrl = getWhatsappUrlByService("إعلانات ممولة", adsWhatsappMsg);
 
   return (
-    <section id="services" className="py-16 sm:py-24 bg-[#060B18] relative">
+    <section id="services" className="py-14 sm:py-24 bg-[#060B18] relative overflow-hidden">
       {/* Ambient background glow circles */}
       <div className="absolute top-1/3 left-0 w-80 h-80 bg-blue-600/10 rounded-full blur-[100px] pointer-events-none" />
       <div className="absolute bottom-1/4 right-0 w-80 h-80 bg-purple-600/10 rounded-full blur-[100px] pointer-events-none" />
@@ -90,7 +90,7 @@ export function ServicesSection() {
             <div
               onMouseEnter={() => setHoveredCard(1)}
               onMouseLeave={() => setHoveredCard(null)}
-              className="card-tech rounded-3xl p-6 sm:p-10 relative overflow-hidden group"
+              className="card-tech rounded-3xl p-4 sm:p-8 lg:p-10 relative overflow-hidden group"
             >
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                 {/* Text & Details */}
@@ -160,7 +160,7 @@ export function ServicesSection() {
             <div
               onMouseEnter={() => setHoveredCard(2)}
               onMouseLeave={() => setHoveredCard(null)}
-              className="card-tech rounded-3xl p-6 sm:p-10 relative overflow-hidden group"
+              className="card-tech rounded-3xl p-4 sm:p-8 lg:p-10 relative overflow-hidden group"
             >
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                 {/* Text & Details */}

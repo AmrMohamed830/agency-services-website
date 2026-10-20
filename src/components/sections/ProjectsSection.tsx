@@ -19,7 +19,7 @@ export function ProjectsSection() {
   const adsCount = projectsData.filter((p) => p.type === "ads").length;
 
   return (
-    <section id="projects" className="py-12 sm:py-20 bg-[#060B18] relative">
+    <section id="projects" className="py-12 sm:py-20 bg-[#060B18] relative overflow-hidden">
       <div className="absolute top-1/4 left-1/3 w-96 h-96 bg-blue-600/10 rounded-full blur-[140px] pointer-events-none" />
 
       <Container className="max-w-6xl relative z-10">

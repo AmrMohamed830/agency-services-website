@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Cairo } from "next/font/google";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
@@ -21,6 +21,12 @@ export const metadata: Metadata = {
   description: agencyConfig.description,
 };
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -30,15 +36,16 @@ export default function RootLayout({
     <html
       lang="ar"
       dir="rtl"
-      className={`${cairo.variable} font-sans h-full antialiased dark`}
+      className={`${cairo.variable} font-sans h-full antialiased dark overflow-x-hidden w-full max-w-full`}
     >
-      <body className="min-h-full flex flex-col bg-[#030712] text-[#F8FAFC] font-sans selection:bg-blue-500 selection:text-white relative bg-dark-mesh">
+      <body className="min-h-full flex flex-col bg-[#060B18] text-[#F8FAFC] font-sans selection:bg-blue-500 selection:text-white relative bg-dark-mesh overflow-x-hidden w-full max-w-full">
         <LanguageProvider>
           <Navbar />
-          <main className="flex-1 flex flex-col relative z-10">{children}</main>
+          <main className="flex-1 flex flex-col relative z-10 w-full max-w-full overflow-x-hidden">{children}</main>
           <Footer />
         </LanguageProvider>
       </body>
     </html>
   );
 }
+
