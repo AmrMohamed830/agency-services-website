@@ -1,10 +1,10 @@
 "use client";
 
 import * as React from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { agencyConfig } from "@/data/agency";
 import { Container } from "@/components/ui/Container";
+import { Logo } from "@/components/ui/Logo";
 import { useLanguage } from "@/lib/LanguageContext";
 
 export function Footer() {
@@ -12,53 +12,43 @@ export function Footer() {
   const { t } = useLanguage();
 
   return (
-    <footer className="bg-[#F3ECE0] border-t border-[#E5DDD1] py-12 text-[#544D45]">
-      <Container className="max-w-7xl">
+    <footer className="bg-[#040812] border-t border-white/[0.04] py-12 text-slate-400 relative overflow-hidden">
+      {/* Subtle bottom ambient glow */}
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[500px] h-20 bg-blue-600/10 blur-3xl pointer-events-none" />
+
+      <Container className="max-w-7xl relative z-10">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Brand & Tagline with New Logo */}
           <div className="flex items-center gap-3">
-            <div className="relative h-9 w-9 rounded-xl overflow-hidden border border-[#E5DDD1] bg-[#070E24]">
-              <Image
-                src="/images/smart-media-brand-logo-new.jpg"
-                alt="Smart Media Logo"
-                fill
-                className="object-cover"
-              />
-            </div>
-            <div className="flex flex-col">
-              <span className="text-xl font-black text-[#2D2926]">
-                {t("brandName")}
-              </span>
-              <p className="text-xs text-[#8C7662]">
-                {t("footerTagline")}
-              </p>
-            </div>
+            <Link href="/" aria-label="Smart Media">
+              <Logo size="sm" showText={true} />
+            </Link>
           </div>
 
           {/* Quick Links */}
-          <div className="flex flex-wrap justify-center gap-6 text-xs font-bold text-[#544D45]">
-            <Link href="/" className="hover:text-[#B85D43] transition-colors">
+          <div className="flex flex-wrap justify-center gap-6 text-xs font-bold text-slate-400">
+            <Link href="/" className="hover:text-cyan-300 transition-colors">
               {t("navHome")}
             </Link>
-            <Link href="/#services" className="hover:text-[#B85D43] transition-colors">
+            <Link href="/#services" className="hover:text-cyan-300 transition-colors">
               {t("navServices")}
             </Link>
-            <Link href="/work" className="hover:text-[#B85D43] transition-colors">
+            <Link href="/work" className="hover:text-cyan-300 transition-colors">
               {t("navWork")}
             </Link>
-            <Link href="/#process" className="hover:text-[#B85D43] transition-colors">
+            <Link href="/#process" className="hover:text-cyan-300 transition-colors">
               {t("navProcess")}
             </Link>
-            <Link href="/#faq" className="hover:text-[#B85D43] transition-colors">
+            <Link href="/#faq" className="hover:text-cyan-300 transition-colors">
               {t("navFaq")}
             </Link>
-            <Link href="/contact" className="hover:text-[#B85D43] transition-colors">
+            <Link href="/contact" className="hover:text-cyan-300 transition-colors">
               {t("navContact")}
             </Link>
           </div>
 
           {/* Copyright */}
-          <div className="text-xs text-[#8C7662]">
+          <div className="text-xs text-slate-400">
             © {currentYear} {agencyConfig.name}. {t("copyright")}
           </div>
         </div>

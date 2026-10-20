@@ -2,33 +2,41 @@
 
 @layer base {
   :root {
-    /* Warm Editorial Paper System matching Reference Image 1 Palette */
-    --background: #F5EFE6;
-    --foreground: #2D2926;
+    /* High-Tech Midnight Blue / Deep Dark Navy Palette */
+    --background: #030712;
+    --background-darker: #02040A;
+    --background-navy: #060B1D;
+    --foreground: #F8FAFC;
 
-    --card: #FDFBF7;
-    --card-foreground: #2D2926;
+    /* Dark Glassmorphic Cards */
+    --card: #081028;
+    --card-foreground: #F8FAFC;
 
-    --popover: #FDFBF7;
-    --popover-foreground: #2D2926;
+    --popover: #081028;
+    --popover-foreground: #F8FAFC;
 
-    /* Terracotta Rust Primary Accent (#B85D43) */
-    --primary: #B85D43;
+    /* Tech Electric Blue & Neon Purple Accents */
+    --primary: #3B82F6;
     --primary-foreground: #FFFFFF;
-    --primary-hover: #9F4A32;
+    --primary-hover: #2563EB;
 
-    --secondary: #EDE7DC;
-    --secondary-foreground: #38322E;
+    --accent-cyan: #00D2FF;
+    --accent-purple: #8B5CF6;
+    --accent-purple-glow: #A855F7;
 
-    --muted: #EDE5D8;
-    --muted-foreground: #726960;
+    --secondary: #0D1B3E;
+    --secondary-foreground: #E2E8F0;
 
-    --accent: #E8DEC9;
-    --accent-foreground: #2D2926;
+    --muted: #0B1633;
+    --muted-foreground: #94A3B8;
 
-    --border: #E5DDD1;
-    --input: #E5DDD1;
-    --ring: #B85D43;
+    --accent: #11224D;
+    --accent-foreground: #F8FAFC;
+
+    --border: rgba(59, 130, 246, 0.15);
+    --border-subtle: rgba(255, 255, 255, 0.08);
+    --input: rgba(11, 22, 51, 0.8);
+    --ring: #3B82F6;
 
     --radius: 1rem;
   }
@@ -68,49 +76,154 @@
   --radius-sm: calc(var(--radius) - 4px);
 }
 
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
+}
+
 body {
-  background-color: var(--background);
-  color: var(--foreground);
+  background-color: #060B18;
+  color: #F8FAFC;
   font-family: var(--font-cairo), system-ui, -apple-system, sans-serif;
   font-feature-settings: "rlig" 1, "calt" 1;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
-/* Notebook Ruled Background Pattern matching Reference Image 1 */
-.bg-notebook-lines {
-  background-color: #F5EFE6;
-  background-image: linear-gradient(
-    to bottom,
-    transparent,
-    transparent 31px,
-    rgba(215, 203, 189, 0.55) 32px
-  );
-  background-size: 100% 32px;
+/* Deep Midnight Blue / SaaS AI Background System - Harmonized & Seamless */
+.bg-midnight-gradient {
+  background: radial-gradient(ellipse at 50% 0%, #0b1532 0%, #070e22 55%, #060B18 100%);
 }
 
-/* Custom Terracotta Action Buttons */
-.btn-terracotta {
-  background-color: #B85D43;
+.bg-dark-mesh {
+  background-color: #060B18;
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(6, 182, 212, 0.1) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(139, 92, 246, 0.1) 0px, transparent 50%),
+    radial-gradient(at 50% 50%, rgba(37, 99, 235, 0.06) 0px, transparent 60%);
+}
+
+/* Subtle Cyber Grid Pattern */
+.bg-cyber-grid {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+/* Creative High-Tech Buttons */
+.btn-tech-primary {
+  position: relative;
+  background: linear-gradient(135deg, #00D2FF 0%, #2563EB 50%, #7C3AED 100%);
   color: #FFFFFF;
-  transition: all 0.2s ease;
+  font-weight: 800;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
 }
 
-.btn-terracotta:hover {
-  background-color: #9F4A32;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(184, 93, 67, 0.25);
+.btn-tech-primary::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transition: left 0.6s ease;
 }
 
-.btn-paper-outline {
-  background-color: #FDFBF7;
-  color: #2D2926;
-  border: 1px solid #DED5C7;
-  transition: all 0.2s ease;
+.btn-tech-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 25px rgba(59, 130, 246, 0.6), 0 0 40px rgba(124, 58, 237, 0.4);
+  border-color: rgba(255, 255, 255, 0.5);
 }
 
-.btn-paper-outline:hover {
-  background-color: #F7F1E6;
-  border-color: #CFC2B0;
-  transform: translateY(-1px);
+.btn-tech-primary:hover::before {
+  left: 100%;
+}
+
+.btn-tech-outline {
+  position: relative;
+  background: rgba(10, 20, 48, 0.6);
+  backdrop-filter: blur(8px);
+  color: #F8FAFC;
+  font-weight: 700;
+  border: 1px solid rgba(59, 130, 246, 0.25);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-tech-outline:hover {
+  background: rgba(17, 34, 77, 0.85);
+  border-color: rgba(0, 210, 255, 0.6);
+  color: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px rgba(0, 210, 255, 0.25);
+}
+
+/* Modern Dark Cards */
+.card-tech {
+  background: rgba(8, 16, 40, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(59, 130, 246, 0.15);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-tech:hover {
+  transform: translateY(-5px);
+  border-color: rgba(59, 130, 246, 0.4);
+  box-shadow: 0 14px 35px -5px rgba(37, 99, 235, 0.25), 0 0 20px rgba(124, 58, 237, 0.15);
+}
+
+/* Continuous Seamless Infinite Marquee */
+@keyframes marquee-infinite {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+.animate-marquee-infinite {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  min-width: 100%;
+  animation: marquee-infinite 35s linear infinite;
+  will-change: transform;
+}
+
+/* Subtle Floating Animation */
+@keyframes float-subtle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-float-subtle {
+  animation: float-subtle 4s ease-in-out infinite;
+}
+
+/* Gradient Text Utilities */
+.text-gradient-cyan-purple {
+  background: linear-gradient(135deg, #00D2FF 0%, #3B82F6 45%, #A855F7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-blue {
+  background: linear-gradient(135deg, #60A5FA 0%, #3B82F6 50%, #1D4ED8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

@@ -30,12 +30,12 @@ export default function RootLayout({
     <html
       lang="ar"
       dir="rtl"
-      className={`${cairo.variable} font-sans h-full antialiased`}
+      className={`${cairo.variable} font-sans h-full antialiased dark`}
     >
-      <body className="min-h-full flex flex-col bg-notebook-lines text-[#2D2926] font-sans selection:bg-[#B85D43] selection:text-white">
+      <body className="min-h-full flex flex-col bg-[#030712] text-[#F8FAFC] font-sans selection:bg-blue-500 selection:text-white relative bg-dark-mesh">
         <LanguageProvider>
           <Navbar />
-          <main className="flex-1 flex flex-col">{children}</main>
+          <main className="flex-1 flex flex-col relative z-10">{children}</main>
           <Footer />
         </LanguageProvider>
       </body>

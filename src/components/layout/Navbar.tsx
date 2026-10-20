@@ -1,11 +1,11 @@
 "use client";
 
 import * as React from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { Menu, X, ArrowLeft, ArrowRight, Globe } from "lucide-react";
 import { agencyConfig } from "@/data/agency";
 import { useLanguage } from "@/lib/LanguageContext";
+import { Logo } from "@/components/ui/Logo";
 import { cn } from "@/lib/utils";
 
 export function Navbar() {
@@ -31,42 +31,27 @@ export function Navbar() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 w-full px-4 sm:px-8 py-3.5 transition-all duration-300">
+    <header className="sticky top-0 z-50 w-full px-4 sm:px-8 py-3 transition-all duration-300">
       <div
         className={cn(
-          "max-w-7xl mx-auto rounded-2xl transition-all duration-300 px-4 sm:px-6 py-3 flex items-center justify-between border",
+          "max-w-7xl mx-auto rounded-2xl transition-all duration-300 px-4 sm:px-6 py-2.5 flex items-center justify-between border",
           isScrolled
-            ? "bg-[#FDFBF7]/95 backdrop-blur-md border-[#E3D9CC] shadow-md shadow-[#46321E]/5"
-            : "bg-[#FDFBF7]/85 backdrop-blur-sm border-[#EAE2D5] shadow-xs"
+            ? "bg-[#060B1E]/90 backdrop-blur-md border-blue-500/20 shadow-xl shadow-black/40"
+            : "bg-[#060B1E]/70 backdrop-blur-sm border-white/10 shadow-lg shadow-black/20"
         )}
       >
-        {/* Brand Logo with New Uploaded Logo Image */}
+        {/* Brand Logo strictly using local asset image */}
         <Link
           href="/"
-          className="flex items-center gap-3 group focus-visible:outline-none"
+          className="flex items-center group focus-visible:outline-none bg-transparent"
           aria-label={agencyConfig.name}
         >
-          <div className="relative h-10 w-10 sm:h-11 sm:w-11 rounded-xl overflow-hidden border border-[#E5DDD1] shadow-xs bg-[#070E24]">
-            <Image
-              src="/images/smart-media-brand-logo-new.jpg"
-              alt="Smart Media Brand Logo"
-              fill
-              className="object-cover transition-transform duration-300 group-hover:scale-105"
-            />
-          </div>
-          <div className="flex flex-col">
-            <span className="text-xl sm:text-2xl font-black tracking-tight text-[#2D2926] group-hover:text-[#B85D43] transition-colors">
-              {t("brandName")}
-            </span>
-            <span className="text-[10px] font-bold text-[#8C7662] tracking-wide">
-              {t("brandArabic")}
-            </span>
-          </div>
+          <Logo size="md" />
         </Link>
 
         {/* Center: Desktop Navigation Bar */}
         <nav
-          className="hidden md:flex items-center gap-1 lg:gap-3"
+          className="hidden md:flex items-center gap-1 lg:gap-2"
           aria-label="Main Navigation"
         >
           {navItems.map((item) => {
@@ -74,34 +59,35 @@ export function Navbar() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="px-3.5 py-1.5 text-sm font-bold rounded-lg transition-all duration-200 text-[#544D45] hover:text-[#B85D43] hover:bg-[#F2ECE1]"
+                className="px-3.5 py-1.5 text-sm font-bold rounded-xl transition-all duration-200 text-slate-300 hover:text-white hover:bg-white/10 relative group"
               >
-                {item.label}
+                <span>{item.label}</span>
+                <span className="absolute inset-x-3 -bottom-0.5 h-[2px] bg-gradient-to-r from-cyan-400 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity rounded-full" />
               </Link>
             );
           })}
         </nav>
 
-        {/* Left: Action Button & Working Language Switcher */}
-        <div className="hidden md:flex items-center gap-3">
-          {/* Working Language Switcher Toggle Button */}
+        {/* Left: Action Button & Language Switcher */}
+        <div className="hidden md:flex items-center gap-2.5">
+          {/* Language Switcher */}
           <button
             type="button"
             onClick={toggleLanguage}
-            className="px-3.5 py-1.5 text-xs font-extrabold text-[#544D45] hover:text-[#B85D43] bg-[#F4EDE2] hover:bg-[#EFE8DC] border border-[#E5DDD1] rounded-xl transition-all flex items-center gap-1.5 cursor-pointer shadow-2xs"
+            className="px-2.5 py-1.5 text-xs font-bold text-slate-300 hover:text-cyan-300 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl transition-all flex items-center gap-1.5 cursor-pointer"
             title={lang === "ar" ? "Switch to English" : "التحويل للغة العربية"}
           >
-            <Globe className="h-4 w-4 text-[#B85D43]" />
+            <Globe className="h-3.5 w-3.5 text-cyan-400" />
             <span>{t("langSwitchBtn")}</span>
           </button>
 
-          {/* Primary CTA Button "تواصل معانا" */}
+          {/* Primary CTA Button "تواصل معنا" - Proportionate and Elegant */}
           <Link
             href="/contact"
-            className="btn-terracotta inline-flex items-center gap-2 px-5 py-2.5 text-sm font-extrabold rounded-xl shadow-xs cursor-pointer"
+            className="btn-tech-primary inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs sm:text-sm font-bold rounded-xl cursor-pointer shadow-sm"
           >
             <span>{t("contactBtn")}</span>
-            {lang === "ar" ? <ArrowLeft className="h-4 w-4" /> : <ArrowRight className="h-4 w-4" />}
+            {lang === "ar" ? <ArrowLeft className="h-3.5 w-3.5" /> : <ArrowRight className="h-3.5 w-3.5" />}
           </Link>
         </div>
 
@@ -110,7 +96,7 @@ export function Navbar() {
           <button
             type="button"
             onClick={toggleLanguage}
-            className="px-2.5 py-1.5 text-xs font-bold bg-[#F4EDE2] border border-[#E5DDD1] rounded-lg text-[#2D2926]"
+            className="px-2 py-1 text-xs font-bold bg-white/5 border border-white/10 rounded-lg text-slate-200"
           >
             {t("langSwitchBtn")}
           </button>
@@ -119,7 +105,7 @@ export function Navbar() {
             onClick={() => setIsOpen((prev) => !prev)}
             aria-expanded={isOpen}
             aria-label={isOpen ? "Close Menu" : "Open Menu"}
-            className="p-2.5 rounded-xl border border-[#E5DDD1] bg-[#FDFBF7] text-[#2D2926]"
+            className="p-2 rounded-xl border border-white/10 bg-white/5 text-slate-200 hover:text-white"
           >
             {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
@@ -128,7 +114,7 @@ export function Navbar() {
 
       {/* Mobile Drawer Menu */}
       {isOpen && (
-        <div className="fixed inset-x-4 top-20 z-50 flex flex-col bg-[#FDFBF7] border border-[#E3D9CC] rounded-2xl p-5 md:hidden shadow-xl animate-in fade-in duration-200">
+        <div className="fixed inset-x-4 top-20 z-50 flex flex-col bg-[#070D22]/95 backdrop-blur-xl border border-blue-500/25 rounded-2xl p-5 md:hidden shadow-2xl animate-in fade-in duration-200">
           <nav className="flex flex-col space-y-1">
             {navItems.map((item) => {
               return (
@@ -136,27 +122,27 @@ export function Navbar() {
                   key={item.href}
                   href={item.href}
                   onClick={() => setIsOpen(false)}
-                  className="flex items-center justify-between px-4 py-3 text-base font-bold text-[#2D2926] rounded-xl hover:bg-[#F5EFE6] transition-colors"
+                  className="flex items-center justify-between px-4 py-3 text-base font-bold text-slate-200 rounded-xl hover:bg-white/10 transition-colors"
                 >
                   <span>{item.label}</span>
                   {lang === "ar" ? (
-                    <ArrowLeft className="h-4 w-4 text-[#8C7662]" />
+                    <ArrowLeft className="h-4 w-4 text-cyan-400" />
                   ) : (
-                    <ArrowRight className="h-4 w-4 text-[#8C7662]" />
+                    <ArrowRight className="h-4 w-4 text-cyan-400" />
                   )}
                 </Link>
               );
             })}
           </nav>
 
-          <div className="mt-4 pt-4 border-t border-[#E5DDD1] flex flex-col gap-2">
+          <div className="mt-4 pt-4 border-t border-white/10 flex flex-col gap-2">
             <Link
               href="/contact"
               onClick={() => setIsOpen(false)}
-              className="w-full btn-terracotta inline-flex items-center justify-center gap-2 py-3.5 text-base font-bold rounded-xl text-center"
+              className="w-full btn-tech-primary inline-flex items-center justify-center gap-2 py-2.5 text-sm font-bold rounded-xl text-center"
             >
               <span>{t("contactBtn")}</span>
-              {lang === "ar" ? <ArrowLeft className="h-5 w-5" /> : <ArrowRight className="h-5 w-5" />}
+              {lang === "ar" ? <ArrowLeft className="h-4 w-4" /> : <ArrowRight className="h-4 w-4" />}
             </Link>
           </div>
         </div>

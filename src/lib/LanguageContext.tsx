@@ -50,14 +50,14 @@ const translations: Record<Language, Record<string, string>> = {
       "بنصمم وبنبني مواقع سريعة ومتجاوبة تقدم لشركتك حضورًا رقميًا احترافيًا، وتسهّل على عملائك المحتملين اكتشاف خدماتك وفهمها والتواصل معك بسهولة.",
     service1Cta: "ابنِ موقعك الآن",
 
-    // Service 02: Media Buying
+    // Service 02: Media Buying & AI Videos (Merged Flagship Service)
     service2Num: "02",
-    service2Category: "Media Buying & Paid Advertising",
-    service2Title: "الحملات الإعلانية وإدارة الإعلانات",
-    service2Headline: "الوصول إلى العملاء المناسبين يبدأ من الاستهداف الصحيح.",
+    service2Category: "Media Buying & AI Video Creatives",
+    service2Title: "الحملات الإعلانية ومبتكرات الذكاء الاصطناعي",
+    service2Headline: "استهداف فئات الميديا باير وفيديوهات إعلانية سينمائية بالذكاء الاصطناعي.",
     service2Desc:
-      "بنخطط وبندير حملات إعلانية ممولة ومستهدفة مصممة للوصول إلى الفئات المهتمة بخدمتك عبر منصات Meta وGoogle وTikTok.",
-    service2Cta: "أطلق حملتك الإعلانية",
+      "بندير حملاتك الإعلانية الممولة على منصات TikTok, Google, Meta مع إنتاج فيديوهات وسكربتات إعلانية مبتكرة بالذكاء الاصطناعي لضمان أعلى معدل تحويل وأفضل عائد على الإنفاق الإعلاني (ROAS).",
+    service2Cta: "أطلق حملتك وفيديوهاتك الآن",
 
     // Capabilities AR
     capNext: "تطوير Next.js",
@@ -67,12 +67,12 @@ const translations: Record<Language, Record<string, string>> = {
     capWhatsapp: "ربط الواتساب المباشر",
     capLeads: "نماذج تواصل وجمع العملاء المحتملين",
 
-    capStrategy: "استراتيجية الحملات الإعلانية",
-    capTargeting: "استهداف الجمهور المناسب",
-    capPlatforms: "إعلانات Meta وGoogle وTikTok",
-    capPixel: "ربط Meta Pixel & Conversions API",
-    capMonitor: "متابعة وتحسين الأداء",
-    capReport: "تقارير أداء دورية شفافة",
+    capStrategy: "استراتيجية واستهداف فئات الميديا باير بدقة",
+    capPlatforms: "إعلانات ممولة على Meta و Google و TikTok",
+    capAiVideo: "فيديوهات إعلانية سينمائية بالذكاء الاصطناعي",
+    capAiScripts: "سكربتات ونصوص إعلانية مقنعة عالية التحويل",
+    capPixel: "ربط Pixel و Conversions API وتتبع المبيعات",
+    capRoas: "تحسين مستمر لـ ROAS وتقارير دورية شفافة",
 
     // Projects
     projectsBadge: "أعمالنا ونتايجنا",
@@ -180,29 +180,29 @@ const translations: Record<Language, Record<string, string>> = {
       "We design and build fast, responsive websites that give your business a professional digital presence, making it easy for potential customers to discover, understand, and contact you easily.",
     service1Cta: "Build My Website",
 
-    // Service 02: Media Buying
+    // Service 02: Media Buying & AI Videos (Merged Flagship Service)
     service2Num: "02",
-    service2Category: "Media Buying & Paid Advertising",
-    service2Title: "Media Buying & Paid Advertising",
-    service2Headline: "Reaching the Right Customers Starts with Precise Targeting.",
+    service2Category: "Media Buying & AI Video Creatives",
+    service2Title: "Media Buying, Paid Ads & AI Video Creatives",
+    service2Headline: "Precision Audience Targeting & Cinematic AI Video Production.",
     service2Desc:
-      "We plan and manage targeted paid advertising campaigns designed to reach relevant audiences across Meta, Google, and TikTok platforms.",
-    service2Cta: "Launch My Campaign",
+      "We plan, deploy, and scale targeted paid ad campaigns across TikTok, Google, and Meta, combined with custom AI video creatives and high-converting scripts that maximize your ROAS.",
+    service2Cta: "Launch Campaign & AI Videos",
 
     // Capabilities EN
     capNext: "Next.js Development",
     capResponsive: "Responsive Design for All Devices",
-    capPerf: "Fast & Performance-Optimized Websites",
+    capPerf: "Fast & Performance-Optimized Platforms",
     capSeo: "SEO-Friendly Architecture",
     capWhatsapp: "Direct WhatsApp Integration",
     capLeads: "Contact & Lead Generation Forms",
 
-    capStrategy: "Campaign Strategy",
-    capTargeting: "Audience Targeting",
-    capPlatforms: "Meta, Google & TikTok Ads",
-    capPixel: "Meta Pixel & Conversions API Setup",
-    capMonitor: "Campaign Monitoring & Optimization",
-    capReport: "Transparent Performance Reporting",
+    capStrategy: "Precision Media Buying & Audience Targeting",
+    capPlatforms: "Paid Ads on Meta, Google & TikTok",
+    capAiVideo: "Cinematic AI Video Ads (TikTok, Reels & Shorts)",
+    capAiScripts: "High-Converting Persuasive Video Scripts",
+    capPixel: "Meta Pixel & Conversions API Tracking",
+    capRoas: "Continuous ROAS Optimization & Transparent Reports",
 
     // Projects
     projectsBadge: "Portfolio & Results",

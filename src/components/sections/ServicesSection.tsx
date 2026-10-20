@@ -3,12 +3,18 @@
 import * as React from "react";
 import { getWhatsappUrlByService } from "@/data/agency";
 import { Container } from "@/components/ui/Container";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { useLanguage } from "@/lib/LanguageContext";
-import { ArrowLeft, ArrowRight, CheckCircle, Sparkles } from "lucide-react";
+import {
+  WebDevMotionVisual,
+  AdsAndAiMotionVisual,
+} from "@/components/ui/ServiceMotionVisuals";
+import { ArrowLeft, ArrowRight, CheckCircle, Sparkles, MessageCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export function ServicesSection() {
   const { lang, t } = useLanguage();
+  const [hoveredCard, setHoveredCard] = React.useState<number | null>(null);
 
   const webCapabilities = [
     t("capNext"),
@@ -19,186 +25,206 @@ export function ServicesSection() {
     t("capLeads"),
   ];
 
-  const adsCapabilities = [
+  const adsAndAiCapabilities = [
     t("capStrategy"),
-    t("capTargeting"),
     t("capPlatforms"),
+    t("capAiVideo"),
+    t("capAiScripts"),
     t("capPixel"),
-    t("capMonitor"),
-    t("capReport"),
+    t("capRoas"),
   ];
 
-  // Pre-filled WhatsApp URLs for each service using valid ?text= parameter and dynamic recipient number
+  // Pre-filled WhatsApp URLs
   const webWhatsappMsg =
     lang === "ar"
-      ? "أهلاً سمارت ميديا 👋، حابب أستفسر عن تطوير موقع إلكتروني"
+      ? "أهلاً سمارت ميديا 👋، حابب أستفسر عن خدمة تطوير موقع إلكتروني"
       : "Hello Smart Media 👋, I would like to inquire about Website Development";
   const webWhatsappUrl = getWhatsappUrlByService("تطوير موقع إلكتروني", webWhatsappMsg);
 
   const adsWhatsappMsg =
     lang === "ar"
-      ? "أهلاً سمارت ميديا 👋، حابب أستفسر عن إدارة وتأهيل الحملات الإعلانية الممولة"
-      : "Hello Smart Media 👋, I would like to inquire about Paid Advertising Campaigns";
+      ? "أهلاً سمارت ميديا 👋، حابب أستفسر عن إدارة الحملات الإعلانية وفيديوهات الذكاء الاصطناعي"
+      : "Hello Smart Media 👋, I would like to inquire about Paid Ads & AI Video Creatives";
   const adsWhatsappUrl = getWhatsappUrlByService("إعلانات ممولة", adsWhatsappMsg);
 
   return (
-    <section id="services" className="py-14 sm:py-24 bg-[#FAF6F0]/70 border-y border-[#EAE2D5]">
-      <Container className="max-w-7xl">
+    <section id="services" className="py-16 sm:py-24 bg-[#060B18] relative">
+      {/* Ambient background glow circles */}
+      <div className="absolute top-1/3 left-0 w-80 h-80 bg-blue-600/10 rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute bottom-1/4 right-0 w-80 h-80 bg-purple-600/10 rounded-full blur-[100px] pointer-events-none" />
+
+      <Container className="max-w-7xl relative z-10">
         {/* Section Header: Centered Alignment */}
-        <div className="max-w-3xl mx-auto mb-14 sm:mb-20 text-center">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#EFE8DC] border border-[#E2D6C5] text-xs font-bold text-[#876E57] mb-4">
-            <Sparkles className="h-3.5 w-3.5 text-[#B85D43]" />
-            <span>{t("servicesBadge")}</span>
+        <ScrollReveal direction="up" delay={100}>
+          <div className="max-w-3xl mx-auto mb-14 sm:mb-20 text-center">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-950/60 border border-blue-500/30 text-xs font-bold text-cyan-300 mb-4 backdrop-blur-sm shadow-[0_0_12px_rgba(6,182,212,0.15)]">
+              <Sparkles className="h-3.5 w-3.5 text-cyan-400" />
+              <span>{t("servicesBadge")}</span>
+            </div>
+
+            <h2 className="text-3xl sm:text-5xl font-black text-white leading-[1.2] tracking-tight">
+              {lang === "ar" ? (
+                <>
+                  نبني موقعك. <span className="text-gradient-cyan-purple">نوصل خدمتك للعملاء.</span>
+                </>
+              ) : (
+                <>
+                  We Build Your Platform. <span className="text-gradient-cyan-purple">We Drive Your Growth.</span>
+                </>
+              )}
+            </h2>
+
+            <p className="mt-4 text-base sm:text-lg text-slate-300 leading-relaxed font-normal">
+              {lang === "ar"
+                ? "بنركز على ركيزتين أساسيتين: تطوير المواقع العصرية، والحملات الإعلانية الممولة مع فيديوهات الذكاء الاصطناعي لبناء حضور رقمي قوي وتحقيق أعلى عائد."
+                : "We focus on two core pillars: High-performance web platforms, and targeted paid ads with AI video creatives for exponential ROI."}
+            </p>
           </div>
+        </ScrollReveal>
 
-          <h2 className="text-3xl sm:text-5xl font-black text-[#2D2926] leading-[1.2] tracking-tight">
-            {t("servicesTitle")}
-          </h2>
-
-          <p className="mt-4 text-base sm:text-lg text-[#685F56] leading-relaxed">
-            {t("servicesSubtext")}
-          </p>
-        </div>
-
-        {/* Services Editorial Staggered Layout */}
-        <div className="space-y-12 sm:space-y-16">
+        {/* Services High-Tech Staggered Cards */}
+        <div className="space-y-10 sm:space-y-14">
+          
           {/* Service 01: Website Development */}
-          <div className="relative bg-[#FDFBF7] border border-[#E5DDD1] rounded-3xl p-7 sm:p-12 shadow-sm hover:shadow-md transition-all duration-300">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-              {/* Text Header */}
-              <div
-                className={cn(
-                  "lg:col-span-6 space-y-4",
-                  lang === "ar" ? "text-right" : "text-left"
-                )}
-              >
-                <div className="flex items-center gap-3">
-                  <span className="text-sm font-black text-[#B85D43] px-3 py-1 rounded-lg bg-[#F4EDE2] border border-[#E5DDD1]">
-                    {t("service1Num")}
-                  </span>
-                  <span className="text-xs font-extrabold uppercase tracking-wider text-[#8C7662]">
-                    {t("service1Category")}
-                  </span>
-                </div>
-
-                <h3 className="text-2xl sm:text-4xl font-black text-[#2D2926] leading-tight">
-                  {t("service1Headline")}
-                </h3>
-
-                <p className="text-sm sm:text-base text-[#685F56] leading-relaxed">
-                  {t("service1Desc")}
-                </p>
-
-                <div className="pt-4">
-                  <a
-                    href={webWhatsappUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn-terracotta inline-flex items-center gap-2.5 px-6 py-3.5 text-sm font-extrabold rounded-2xl shadow-xs cursor-pointer"
-                  >
-                    <span>{t("service1Cta")}</span>
-                    {lang === "ar" ? <ArrowLeft className="h-4 w-4" /> : <ArrowRight className="h-4 w-4" />}
-                  </a>
-                </div>
-              </div>
-
-              {/* Capabilities Grid Block */}
-              <div className="lg:col-span-6 bg-[#F7F2EA] border border-[#EBE3D7] rounded-2xl p-6 sm:p-8">
-                <h4
+          <ScrollReveal direction="up" delay={150}>
+            <div
+              onMouseEnter={() => setHoveredCard(1)}
+              onMouseLeave={() => setHoveredCard(null)}
+              className="card-tech rounded-3xl p-6 sm:p-10 relative overflow-hidden group"
+            >
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                {/* Text & Details */}
+                <div
                   className={cn(
-                    "text-xs font-extrabold uppercase tracking-wider text-[#8C7662] mb-4",
+                    "lg:col-span-6 space-y-4",
                     lang === "ar" ? "text-right" : "text-left"
                   )}
                 >
-                  {t("capabilitiesLabel")}
-                </h4>
+                  <div className="flex items-center gap-3">
+                    <span className="text-sm font-black text-cyan-400 px-3 py-1 rounded-xl bg-cyan-950/50 border border-cyan-500/30">
+                      01
+                    </span>
+                    <span className="text-xs font-extrabold uppercase tracking-wider text-slate-400">
+                      Website & Web Development
+                    </span>
+                  </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  {webCapabilities.map((cap, idx) => (
-                    <div
-                      key={idx}
-                      className={cn(
-                        "flex items-center gap-2.5 p-3 rounded-xl bg-[#FDFBF7] border border-[#E5DDD1] text-xs font-bold text-[#3D3732] shadow-2xs",
-                        lang === "ar" ? "text-right" : "text-left"
-                      )}
-                    >
-                      <CheckCircle className="h-4 w-4 text-[#B85D43] shrink-0" />
-                      <span>{cap}</span>
+                  <h3 className="text-2xl sm:text-4xl font-black text-white leading-tight">
+                    {t("service1Headline")}
+                  </h3>
+
+                  <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
+                    {t("service1Desc")}
+                  </p>
+
+                  {/* Capabilities List */}
+                  <div className="pt-2">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                      {webCapabilities.map((cap, idx) => (
+                        <div
+                          key={idx}
+                          className="flex items-center gap-2 p-2.5 rounded-xl bg-white/[0.03] border border-white/5 text-xs font-bold text-slate-200"
+                        >
+                          <CheckCircle className="h-4 w-4 text-cyan-400 shrink-0" />
+                          <span>{cap}</span>
+                        </div>
+                      ))}
                     </div>
-                  ))}
+                  </div>
+
+                  {/* CTA Button */}
+                  <div className="pt-4">
+                    <a
+                      href={webWhatsappUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-tech-primary inline-flex items-center gap-2.5 px-6 py-3.5 text-sm font-extrabold rounded-xl cursor-pointer"
+                    >
+                      <MessageCircle className="h-4 w-4" />
+                      <span>{t("service1Cta")}</span>
+                      {lang === "ar" ? <ArrowLeft className="h-4 w-4" /> : <ArrowRight className="h-4 w-4" />}
+                    </a>
+                  </div>
+                </div>
+
+                {/* SVG Motion Visual Column */}
+                <div className="lg:col-span-6">
+                  <WebDevMotionVisual isHovered={hoveredCard === 1} />
                 </div>
               </div>
             </div>
-          </div>
+          </ScrollReveal>
 
-          {/* Service 02: Media Buying & Paid Advertising */}
-          <div className="relative bg-[#FDFBF7] border border-[#E5DDD1] rounded-3xl p-7 sm:p-12 shadow-sm hover:shadow-md transition-all duration-300">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-              {/* Text Header */}
-              <div
-                className={cn(
-                  "lg:col-span-6 space-y-4",
-                  lang === "ar" ? "text-right" : "text-left"
-                )}
-              >
-                <div className="flex items-center gap-3">
-                  <span className="text-sm font-black text-[#B85D43] px-3 py-1 rounded-lg bg-[#F4EDE2] border border-[#E5DDD1]">
-                    {t("service2Num")}
-                  </span>
-                  <span className="text-xs font-extrabold uppercase tracking-wider text-[#8C7662]">
-                    {t("service2Category")}
-                  </span>
-                </div>
-
-                <h3 className="text-2xl sm:text-4xl font-black text-[#2D2926] leading-tight">
-                  {t("service2Headline")}
-                </h3>
-
-                <p className="text-sm sm:text-base text-[#685F56] leading-relaxed">
-                  {t("service2Desc")}
-                </p>
-
-                <div className="pt-4">
-                  <a
-                    href={adsWhatsappUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn-terracotta inline-flex items-center gap-2.5 px-6 py-3.5 text-sm font-extrabold rounded-2xl shadow-xs cursor-pointer"
-                  >
-                    <span>{t("service2Cta")}</span>
-                    {lang === "ar" ? <ArrowLeft className="h-4 w-4" /> : <ArrowRight className="h-4 w-4" />}
-                  </a>
-                </div>
-              </div>
-
-              {/* Capabilities Grid Block */}
-              <div className="lg:col-span-6 bg-[#F7F2EA] border border-[#EBE3D7] rounded-2xl p-6 sm:p-8">
-                <h4
+          {/* Service 02: Merged Media Buying, Paid Advertising & AI Video Creatives */}
+          <ScrollReveal direction="up" delay={200}>
+            <div
+              onMouseEnter={() => setHoveredCard(2)}
+              onMouseLeave={() => setHoveredCard(null)}
+              className="card-tech rounded-3xl p-6 sm:p-10 relative overflow-hidden group"
+            >
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                {/* Text & Details */}
+                <div
                   className={cn(
-                    "text-xs font-extrabold uppercase tracking-wider text-[#8C7662] mb-4",
+                    "lg:col-span-6 space-y-4",
                     lang === "ar" ? "text-right" : "text-left"
                   )}
                 >
-                  {t("capabilitiesLabel")}
-                </h4>
+                  <div className="flex items-center gap-3">
+                    <span className="text-sm font-black text-purple-400 px-3 py-1 rounded-xl bg-purple-950/50 border border-purple-500/30">
+                      02
+                    </span>
+                    <span className="text-xs font-extrabold uppercase tracking-wider text-slate-400">
+                      Media Buying & AI Video Creatives
+                    </span>
+                  </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  {adsCapabilities.map((cap, idx) => (
-                    <div
-                      key={idx}
-                      className={cn(
-                        "flex items-center gap-2.5 p-3 rounded-xl bg-[#FDFBF7] border border-[#E5DDD1] text-xs font-bold text-[#3D3732] shadow-2xs",
-                        lang === "ar" ? "text-right" : "text-left"
-                      )}
-                    >
-                      <CheckCircle className="h-4 w-4 text-[#B85D43] shrink-0" />
-                      <span>{cap}</span>
+                  <h3 className="text-2xl sm:text-4xl font-black text-white leading-tight">
+                    {t("service2Headline")}
+                  </h3>
+
+                  <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
+                    {t("service2Desc")}
+                  </p>
+
+                  {/* Capabilities List */}
+                  <div className="pt-2">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                      {adsAndAiCapabilities.map((cap, idx) => (
+                        <div
+                          key={idx}
+                          className="flex items-center gap-2 p-2.5 rounded-xl bg-white/[0.03] border border-white/5 text-xs font-bold text-slate-200"
+                        >
+                          <CheckCircle className="h-4 w-4 text-purple-400 shrink-0" />
+                          <span>{cap}</span>
+                        </div>
+                      ))}
                     </div>
-                  ))}
+                  </div>
+
+                  {/* CTA Button */}
+                  <div className="pt-4">
+                    <a
+                      href={adsWhatsappUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-tech-primary inline-flex items-center gap-2.5 px-6 py-3.5 text-sm font-extrabold rounded-xl cursor-pointer"
+                    >
+                      <MessageCircle className="h-4 w-4" />
+                      <span>{t("service2Cta")}</span>
+                      {lang === "ar" ? <ArrowLeft className="h-4 w-4" /> : <ArrowRight className="h-4 w-4" />}
+                    </a>
+                  </div>
+                </div>
+
+                {/* SVG Motion Visual Column */}
+                <div className="lg:col-span-6">
+                  <AdsAndAiMotionVisual isHovered={hoveredCard === 2} />
                 </div>
               </div>
             </div>
-          </div>
+          </ScrollReveal>
+
         </div>
       </Container>
     </section>
