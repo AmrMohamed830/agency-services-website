@@ -29,6 +29,12 @@ const translations: Record<Language, Record<string, string>> = {
     contactBtn: "تواصل معانا",
     langSwitchBtn: "English",
 
+    // Marquee Strip
+    marqueeWeb: "تطوير المواقع",
+    marqueeAiVideo: "فيديوهات ذكاء اصطناعي",
+    marqueeAds: "الإعلانات الممولة",
+    marqueeSolutions: "حلول رقمية",
+
     // Portfolio: Web Development Page
     portfolioWebBadge: "معرض أعمال تطوير المواقع",
     portfolioWebHeroTitle: "مواقع عصرية، كود متقن، وتجربة مستخدم استثنائية",
@@ -206,6 +212,12 @@ const translations: Record<Language, Record<string, string>> = {
     navContact: "Contact Us",
     contactBtn: "Contact Us",
     langSwitchBtn: "العربية",
+
+    // Marquee Strip
+    marqueeWeb: "Website Development",
+    marqueeAiVideo: "AI Video Creatives",
+    marqueeAds: "Paid Advertising",
+    marqueeSolutions: "Digital Solutions",
 
     // Portfolio: Web Development Page
     portfolioWebBadge: "Web Development Showcase",

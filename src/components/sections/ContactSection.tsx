@@ -5,11 +5,45 @@ import { agencyConfig, getWhatsappNumberByService } from "@/data/agency";
 import { Container } from "@/components/ui/Container";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { useLanguage } from "@/lib/LanguageContext";
-import { MessageCircle, Send, Globe, Sparkles } from "lucide-react";
+import { MessageCircle, Send, Globe, Sparkles, ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
+
+export interface CountryCodeItem {
+  code: string;
+  country: string;
+  nameAr: string;
+  nameEn: string;
+  flag: string;
+  placeholder: string;
+}
+
+export const COUNTRY_CODES: CountryCodeItem[] = [
+  { code: "+20", country: "EG", nameAr: "مصر", nameEn: "Egypt", flag: "🇪🇬", placeholder: "010 1234 5678" },
+  { code: "+966", country: "SA", nameAr: "السعودية", nameEn: "Saudi Arabia", flag: "🇸🇦", placeholder: "050 123 4567" },
+  { code: "+971", country: "AE", nameAr: "الإمارات", nameEn: "UAE", flag: "🇦🇪", placeholder: "050 123 4567" },
+  { code: "+965", country: "KW", nameAr: "الكويت", nameEn: "Kuwait", flag: "🇰🇼", placeholder: "9123 4567" },
+  { code: "+974", country: "QA", nameAr: "قطر", nameEn: "Qatar", flag: "🇶🇦", placeholder: "3312 3456" },
+  { code: "+968", country: "OM", nameAr: "عُمان", nameEn: "Oman", flag: "🇴🇲", placeholder: "9123 4567" },
+  { code: "+973", country: "BH", nameAr: "البحرين", nameEn: "Bahrain", flag: "🇧🇭", placeholder: "3612 3456" },
+  { code: "+962", country: "JO", nameAr: "الأردن", nameEn: "Jordan", flag: "🇯🇴", placeholder: "07 9123 4567" },
+  { code: "+964", country: "IQ", nameAr: "العراق", nameEn: "Iraq", flag: "🇮🇶", placeholder: "0770 123 4567" },
+  { code: "+218", country: "LY", nameAr: "ليبيا", nameEn: "Libya", flag: "🇱🇾", placeholder: "091 234 5678" },
+  { code: "+213", country: "DZ", nameAr: "الجزائر", nameEn: "Algeria", flag: "🇩🇿", placeholder: "0551 23 45 67" },
+  { code: "+212", country: "MA", nameAr: "المغرب", nameEn: "Morocco", flag: "🇲🇦", placeholder: "0612 345 678" },
+  { code: "+216", country: "TN", nameAr: "تونس", nameEn: "Tunisia", flag: "🇹🇳", placeholder: "20 123 456" },
+  { code: "+961", country: "LB", nameAr: "لبنان", nameEn: "Lebanon", flag: "🇱🇧", placeholder: "70 123 456" },
+  { code: "+249", country: "SD", nameAr: "السودان", nameEn: "Sudan", flag: "🇸🇩", placeholder: "091 234 5678" },
+  { code: "+967", country: "YE", nameAr: "اليمن", nameEn: "Yemen", flag: "🇾🇪", placeholder: "771 234 567" },
+  { code: "+1", country: "US", nameAr: "أمريكا / كندا", nameEn: "USA / Canada", flag: "🇺🇸", placeholder: "(555) 000-0000" },
+  { code: "+44", country: "GB", nameAr: "المملكة المتحدة", nameEn: "UK", flag: "🇬🇧", placeholder: "7911 123456" },
+  { code: "+49", country: "DE", nameAr: "ألمانيا", nameEn: "Germany", flag: "🇩🇪", placeholder: "151 23456789" },
+  { code: "+90", country: "TR", nameAr: "تركيا", nameEn: "Turkey", flag: "🇹🇷", placeholder: "532 123 45 67" },
+  { code: "+", country: "OTHER", nameAr: "دولة أخرى (دولي)", nameEn: "Other Country", flag: "🌐", placeholder: "رقم الهاتف الدولي" },
+];
 
 export function ContactSection() {
   const { lang, t } = useLanguage();
+  const [selectedCountry, setSelectedCountry] = React.useState<CountryCodeItem>(COUNTRY_CODES[0]);
   const [formData, setFormData] = React.useState({
     name: "",
     phone: "",
@@ -44,10 +78,10 @@ export function ContactSection() {
       newErrors.name = "errNameRequired";
     }
 
-    // 2. Phone / WhatsApp: required + valid phone format & min 7 digits
+    // 2. Phone / WhatsApp: required + valid phone format (min 7 digits, max 15 digits)
     const phoneClean = formData.phone.trim().replace(/[\s\-\(\)]/g, "");
-    const phoneRegex = /^\+?[0-9]{7,15}$/;
-    if (!formData.phone.trim() || !phoneRegex.test(phoneClean)) {
+    const phoneDigits = phoneClean.replace(/[^0-9]/g, "");
+    if (!formData.phone.trim() || phoneDigits.length < 7 || phoneDigits.length > 15) {
       newErrors.phone = "errPhoneRequired";
     }
 
@@ -73,10 +107,20 @@ export function ContactSection() {
 
     const targetWhatsappNumber = getWhatsappNumberByService(formData.service);
 
+    const phoneClean = formData.phone.trim().replace(/[\s\-\(\)]/g, "");
+    let formattedPhone = phoneClean;
+    if (selectedCountry.code !== "+" && formattedPhone.startsWith("0")) {
+      formattedPhone = formattedPhone.substring(1);
+    }
+    const fullPhoneNumber =
+      selectedCountry.code === "+"
+        ? formattedPhone
+        : `${selectedCountry.code} ${formattedPhone}`;
+
     const whatsappMessage =
       lang === "ar"
-        ? `أهلاً سمارت ميديا 👋\n\n📌 طلب جديد من الموقع:\n• الاسم: ${formData.name}\n• رقم الهاتف/الواتساب: ${formData.phone}\n• الخدمة المطلوبة: ${formData.service}\n• تفاصيل المشروع: ${formData.details}`
-        : `Hello Smart Media 👋\n\n📌 New Project Request:\n• Name: ${formData.name}\n• Phone/WhatsApp: ${formData.phone}\n• Service Required: ${formData.service}\n• Project Details: ${formData.details}`;
+        ? `أهلاً سمارت ميديا 👋\n\n📌 طلب جديد من الموقع:\n• الاسم: ${formData.name}\n• رقم الهاتف/الواتساب: ${fullPhoneNumber}\n• مفتاح الدولة: ${selectedCountry.nameAr} (${selectedCountry.code})\n• الخدمة المطلوبة: ${formData.service}\n• تفاصيل المشروع: ${formData.details}`
+        : `Hello Smart Media 👋\n\n📌 New Project Request:\n• Name: ${formData.name}\n• Phone/WhatsApp: ${fullPhoneNumber}\n• Country: ${selectedCountry.nameEn} (${selectedCountry.code})\n• Service Required: ${formData.service}\n• Project Details: ${formData.details}`;
 
     const whatsappUrl = `https://wa.me/${targetWhatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
     window.open(whatsappUrl, "_blank");
@@ -198,23 +242,57 @@ export function ContactSection() {
                       )}
                     </div>
 
-                    {/* Field 2: Phone / WhatsApp */}
+                    {/* Field 2: Phone / WhatsApp with Country Key Selector */}
                     <div>
                       <label className="block text-xs font-bold text-slate-300 mb-1.5">
                         {t("formPhone")} <span className="text-cyan-400">*</span>
                       </label>
-                      <input
-                        type="tel"
-                        placeholder={lang === "ar" ? "مثال: 01000000000" : "e.g. +201000000000"}
-                        value={formData.phone}
-                        onChange={(e) => handleChange("phone", e.target.value)}
+                      <div
                         className={cn(
-                          "w-full px-4 py-3 text-sm rounded-xl bg-[#030818] border text-white placeholder:text-slate-500 focus:outline-none transition-all",
+                          "flex items-stretch rounded-xl bg-[#030818] border transition-all overflow-hidden",
                           errors.phone
-                            ? "border-rose-500 focus:ring-2 focus:ring-rose-500/30"
-                            : "border-blue-500/25 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/20"
+                            ? "border-rose-500 focus-within:ring-2 focus-within:ring-rose-500/30"
+                            : "border-blue-500/25 focus-within:border-cyan-400 focus-within:ring-2 focus-within:ring-cyan-400/20"
                         )}
-                      />
+                      >
+                        {/* Country Key Selector */}
+                        <div className="relative flex items-center shrink-0 border-e border-white/10 bg-[#07122C]/85 hover:bg-[#0A1A3E] transition-colors">
+                          <select
+                            aria-label={lang === "ar" ? "مفتاح الدولة" : "Country code"}
+                            value={selectedCountry.code}
+                            onChange={(e) => {
+                              const item =
+                                COUNTRY_CODES.find((c) => c.code === e.target.value) ||
+                                COUNTRY_CODES[0];
+                              setSelectedCountry(item);
+                            }}
+                            className="appearance-none bg-transparent text-white text-xs sm:text-sm font-bold py-3 ps-3 pe-7 cursor-pointer focus:outline-none"
+                          >
+                            {COUNTRY_CODES.map((c) => (
+                              <option
+                                key={c.code + c.country}
+                                value={c.code}
+                                className="bg-[#060B18] text-white"
+                              >
+                                {c.flag} {lang === "ar" ? c.nameAr : c.nameEn} ({c.code})
+                              </option>
+                            ))}
+                          </select>
+                          <div className="pointer-events-none absolute inset-e-2 text-cyan-400">
+                            <ChevronDown className="h-3.5 w-3.5" />
+                          </div>
+                        </div>
+
+                        {/* Phone Number Input */}
+                        <input
+                          type="tel"
+                          dir="ltr"
+                          placeholder={selectedCountry.placeholder}
+                          value={formData.phone}
+                          onChange={(e) => handleChange("phone", e.target.value)}
+                          className="w-full px-4 py-3 text-sm bg-transparent text-white placeholder:text-slate-500 focus:outline-none font-mono"
+                        />
+                      </div>
                       {errors.phone && (
                         <p className="mt-1 text-xs text-rose-400 font-semibold">{t(errors.phone)}</p>
                       )}

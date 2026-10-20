@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { useLanguage } from "@/lib/LanguageContext";
 import { cn } from "@/lib/utils";
 
 interface TextMarqueeProps {
@@ -8,12 +9,19 @@ interface TextMarqueeProps {
 }
 
 export function TextMarquee({ className }: TextMarqueeProps) {
-  const marqueeItems = [
-    "تطوير المواقع",
-    "فيديوهات ذكاء اصطناعي",
-    "الإعلانات الممولة",
-    "حلول رقمية",
-  ];
+  const { lang, t } = useLanguage();
+
+  const isRtl = lang === "ar";
+  const animationClass = isRtl
+    ? "animate-marquee-infinite-reverse"
+    : "animate-marquee-infinite";
+
+  const marqueeItems = React.useMemo(() => [
+    t("marqueeWeb"),
+    t("marqueeAiVideo"),
+    t("marqueeAds"),
+    t("marqueeSolutions"),
+  ], [t]);
 
   // Repeat the sequence multiple times so each track is ultra-wide (>4500px) and covers any display size
   const repeatIndices = [0, 1, 2, 3, 4, 5];
@@ -45,7 +53,7 @@ export function TextMarquee({ className }: TextMarqueeProps) {
 
   return (
     <section
-      aria-label="خدمات سمارت ميديا"
+      aria-label={lang === "ar" ? "خدمات سمارت ميديا" : "Smart Media Services"}
       className={cn(
         "relative w-full overflow-hidden py-4 sm:py-5 border-y border-white/[0.04] bg-[#060B18] select-none",
         className
@@ -58,22 +66,21 @@ export function TextMarquee({ className }: TextMarqueeProps) {
       {/* 
         True Seamless Continuous Dual-Track Marquee:
         Track 1 and Track 2 are identical sibling tracks placed side-by-side.
-        Both continuously animate from 0% to -100%.
-        As Track 1 exits to the left, Track 2 immediately follows right behind it.
-        When Track 1 reaches -100%, Track 2 has seamlessly occupied its exact starting position,
-        giving a 100% continuous flow with ZERO blank screens and ZERO pauses.
+        - In Arabic (RTL): animates from -100% to 0% (moving towards the right).
+        - In English (LTR): animates from 0% to -100% (moving towards the left).
+        When one track exits the visible frame, the adjacent track seamlessly replaces it.
       */}
       <div
         dir="ltr"
         className="flex overflow-hidden w-full select-none"
       >
         {/* Track 1 */}
-        <div className="animate-marquee-infinite">
+        <div className={animationClass}>
           {renderTrackItems()}
         </div>
 
         {/* Track 2 (Immediately adjacent duplicate) */}
-        <div className="animate-marquee-infinite" aria-hidden="true">
+        <div className={animationClass} aria-hidden="true">
           {renderTrackItems()}
         </div>
       </div>

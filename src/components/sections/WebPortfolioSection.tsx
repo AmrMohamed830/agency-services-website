@@ -471,12 +471,15 @@ export function WebPortfolioSection() {
           </div>
 
           {/* Navigation Controls Bar (Arrows + Indicators) */}
-          <div className="flex items-center justify-center gap-6 mt-4 relative z-20">
-            {/* Prev Button */}
+          <div
+            dir="ltr"
+            className="flex items-center justify-center gap-6 mt-4 relative z-20"
+          >
+            {/* Left Button - Points Outward to the Left */}
             <button
               type="button"
               onClick={lang === "ar" ? nextProject : prevProject}
-              aria-label="Previous Project"
+              aria-label={lang === "ar" ? "المشروع التالي" : "Previous Project"}
               className="w-11 h-11 rounded-2xl bg-[#081028]/90 border border-blue-500/30 text-white flex items-center justify-center hover:bg-cyan-950/70 hover:border-cyan-400 transition-all cursor-pointer shadow-lg shadow-black/40 hover:scale-105"
             >
               <ChevronLeft className="h-5 w-5 text-cyan-300" />
@@ -500,11 +503,11 @@ export function WebPortfolioSection() {
               ))}
             </div>
 
-            {/* Next Button */}
+            {/* Right Button - Points Outward to the Right */}
             <button
               type="button"
               onClick={lang === "ar" ? prevProject : nextProject}
-              aria-label="Next Project"
+              aria-label={lang === "ar" ? "المشروع السابق" : "Next Project"}
               className="w-11 h-11 rounded-2xl bg-[#081028]/90 border border-blue-500/30 text-white flex items-center justify-center hover:bg-cyan-950/70 hover:border-cyan-400 transition-all cursor-pointer shadow-lg shadow-black/40 hover:scale-105"
             >
               <ChevronRight className="h-5 w-5 text-cyan-300" />
