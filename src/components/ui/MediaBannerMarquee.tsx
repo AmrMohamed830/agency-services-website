@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Image from "next/image";
+import { useLanguage } from "@/lib/LanguageContext";
 import { cn } from "@/lib/utils";
 
 const mediaBannerImages = [
@@ -45,6 +46,12 @@ export function MediaBannerMarquee({ className }: { className?: string }) {
     </div>
   );
 
+  const { lang } = useLanguage();
+  const isRtl = lang === "ar";
+  const animationClass = isRtl
+    ? "animate-marquee-infinite-reverse"
+    : "animate-marquee-infinite";
+
   return (
     <section
       aria-label="معرض الحملات الإعلانية والمبتكرات"
@@ -59,10 +66,10 @@ export function MediaBannerMarquee({ className }: { className?: string }) {
 
       {/* Dual Continuous Infinite Track */}
       <div dir="ltr" className="flex overflow-hidden w-full select-none">
-        <div className="animate-marquee-infinite">
+        <div className={animationClass}>
           {renderTrack()}
         </div>
-        <div className="animate-marquee-infinite" aria-hidden="true">
+        <div className={animationClass} aria-hidden="true">
           {renderTrack()}
         </div>
       </div>
