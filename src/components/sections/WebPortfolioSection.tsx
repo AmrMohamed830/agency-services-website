@@ -28,7 +28,11 @@ import { cn } from "@/lib/utils";
 
 export function WebPortfolioSection() {
   const { lang, t } = useLanguage();
-  const [activeIndex, setActiveIndex] = React.useState(0);
+  const defaultSastemhaIdx = React.useMemo(() => {
+    const idx = webProjectsData.findIndex((p) => p.id.includes("sastemha"));
+    return idx !== -1 ? idx : 1;
+  }, []);
+  const [activeIndex, setActiveIndex] = React.useState(defaultSastemhaIdx);
   const [selectedProject, setSelectedProject] = React.useState<WebProjectItem | null>(null);
 
   const projectsCount = webProjectsData.length;
