@@ -1,44 +1,42 @@
 "use client";
 
 import * as React from "react";
-import Link from "next/link";
+import Image from "next/image";
 import {
   TrendingUp,
   Play,
+  Pause,
   Film,
-  Layers,
+  Sparkles,
   Clock,
   Target,
-  CheckCircle2,
-  ArrowLeft,
-  ArrowRight,
-  X,
+  Layers,
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
-import { mediaBuyingProjectsData } from "@/data/projects";
-import { MediaBuyingProjectItem } from "@/types";
+import { MediaBannerMarquee } from "@/components/ui/MediaBannerMarquee";
+import { mediaBuyingVideos, getVideoThumbnail } from "@/data/mediaBuyingVideos";
 import { useLanguage } from "@/lib/LanguageContext";
 import { cn } from "@/lib/utils";
 
 export function MediaBuyingPortfolioSection() {
   const { lang, t } = useLanguage();
   const [activeIndex, setActiveIndex] = React.useState(0);
-  const [activeVideoModal, setActiveVideoModal] = React.useState<MediaBuyingProjectItem | null>(null);
+  const [playingVideoId, setPlayingVideoId] = React.useState<string | null>(null);
 
-  const campaignsCount = mediaBuyingProjectsData.length;
+  const videosCount = mediaBuyingVideos.length;
 
-  const nextCampaign = React.useCallback(() => {
-    setActiveIndex((prev) => (prev + 1) % campaignsCount);
-  }, [campaignsCount]);
+  const nextVideo = React.useCallback(() => {
+    setActiveIndex((prev) => (prev + 1) % videosCount);
+  }, [videosCount]);
 
-  const prevCampaign = React.useCallback(() => {
-    setActiveIndex((prev) => (prev - 1 + campaignsCount) % campaignsCount);
-  }, [campaignsCount]);
+  const prevVideo = React.useCallback(() => {
+    setActiveIndex((prev) => (prev - 1 + videosCount) % videosCount);
+  }, [videosCount]);
 
-  // Touch Swipe Handlers
+  // Touch Swipe Handlers for mobile
   const touchStartX = React.useRef<number | null>(null);
   const touchEndX = React.useRef<number | null>(null);
 
@@ -56,51 +54,48 @@ export function MediaBuyingPortfolioSection() {
     const threshold = 40;
 
     if (lang === "ar") {
-      if (diff > threshold) prevCampaign();
-      if (diff < -threshold) nextCampaign();
+      if (diff > threshold) prevVideo();
+      if (diff < -threshold) nextVideo();
     } else {
-      if (diff > threshold) nextCampaign();
-      if (diff < -threshold) prevCampaign();
+      if (diff > threshold) nextVideo();
+      if (diff < -threshold) prevVideo();
     }
 
     touchStartX.current = null;
     touchEndX.current = null;
   };
 
-  // Handle keyboard events (escape to close modal, arrows to navigate carousel)
+  // Keyboard navigation
   React.useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        setActiveVideoModal(null);
-      } else if (e.key === "ArrowLeft") {
-        if (lang === "ar") nextCampaign();
-        else prevCampaign();
+      if (e.key === "ArrowLeft") {
+        if (lang === "ar") nextVideo();
+        else prevVideo();
       } else if (e.key === "ArrowRight") {
-        if (lang === "ar") prevCampaign();
-        else nextCampaign();
+        if (lang === "ar") prevVideo();
+        else nextVideo();
       }
     };
 
-    if (activeVideoModal) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-
     window.addEventListener("keydown", handleKeyDown);
-    return () => {
-      document.body.style.overflow = "";
-      window.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [activeVideoModal, lang, nextCampaign, prevCampaign]);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [lang, nextVideo, prevVideo]);
+
+  // Toggle playing video on card
+  const handleTogglePlay = (id: string, index: number) => {
+    if (index !== activeIndex) {
+      setActiveIndex(index);
+    }
+    setPlayingVideoId((prev) => (prev === id ? null : id));
+  };
 
   // Compute parabolic curved position (Banana Arc) for Media Buying Cards
   const getCardStyle = (index: number) => {
     let offset = index - activeIndex;
 
     // Shortest circular offset
-    if (offset > campaignsCount / 2) offset -= campaignsCount;
-    if (offset < -campaignsCount / 2) offset += campaignsCount;
+    if (offset > videosCount / 2) offset -= videosCount;
+    if (offset < -videosCount / 2) offset += videosCount;
 
     const absOffset = Math.abs(offset);
 
@@ -114,7 +109,7 @@ export function MediaBuyingPortfolioSection() {
       };
     }
 
-    // Parabolic downward dip: center is at highest (0px), side cards curve down
+    // Parabolic downward dip: center is at highest (0px), side cards curve down smoothly
     const translateY = absOffset === 0 ? 0 : absOffset * 34 + Math.pow(offset, 2) * 12;
 
     // Direction based on RTL / LTR
@@ -144,12 +139,45 @@ export function MediaBuyingPortfolioSection() {
 
   return (
     <div className="relative w-full overflow-hidden bg-[#060B18]">
-      {/* Ambient background glows tailored for media buying / video creativity */}
-      <div className="absolute top-20 left-1/4 w-125 h-125 bg-purple-600/12 rounded-full blur-[150px] pointer-events-none" />
+      {/* 1. Full-Bleed 100% Edge-to-Edge Top Video Showcase (Under Navbar, Above Hero) */}
+      <div className="w-full relative overflow-hidden z-10 border-b border-purple-500/25 shadow-2xl shadow-purple-950/70">
+        <div className="relative w-full h-[240px] sm:h-[320px] md:h-[400px] lg:h-[460px] xl:h-[500px] overflow-hidden bg-[#060B1C]">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="none"
+            className="w-full h-full object-cover object-center"
+          >
+            <source src="/images/media/gemini_generated_video_9ddc26b3.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+
+          {/* Vignette Gradients for High-End Tech Feel */}
+          <div className="absolute inset-0 bg-linear-to-t from-[#060B18] via-transparent to-[#060B18]/30 pointer-events-none" />
+          <div className="absolute inset-y-0 left-0 w-16 sm:w-28 bg-linear-to-r from-[#060B18]/40 to-transparent pointer-events-none" />
+          <div className="absolute inset-y-0 right-0 w-16 sm:w-28 bg-linear-to-l from-[#060B18]/40 to-transparent pointer-events-none" />
+
+          {/* Floating Badges on Video */}
+          <div className="absolute bottom-4 right-4 sm:bottom-6 sm:right-8 z-20 flex items-center gap-2 px-3 sm:px-3.5 py-1.5 rounded-xl bg-[#060B1C]/85 border border-purple-500/30 backdrop-blur-md text-[10px] sm:text-xs font-bold text-white shadow-xl">
+            <span className="w-2 h-2 rounded-full bg-purple-400 animate-ping" />
+            <span>{lang === "ar" ? "فيديوهات إعلانية وحملات ذكية" : "AI Video Ads & Media Buying"}</span>
+          </div>
+
+          <div className="absolute top-4 left-4 sm:top-6 sm:left-8 z-20 flex items-center gap-2 px-3 sm:px-3.5 py-1.5 rounded-xl bg-[#060B1C]/85 border border-cyan-500/30 backdrop-blur-md text-[10px] sm:text-xs font-bold text-cyan-300 shadow-xl">
+            <Sparkles className="h-3.5 w-3.5 text-cyan-400" />
+            <span>Smart Media Buying</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Ambient background glows */}
+      <div className="absolute top-96 left-1/4 w-125 h-125 bg-purple-600/12 rounded-full blur-[150px] pointer-events-none" />
       <div className="absolute top-1/2 right-10 w-112.5 h-112.5 bg-cyan-600/10 rounded-full blur-[150px] pointer-events-none" />
 
-      {/* Hero Header Section */}
-      <section className="relative pt-8 sm:pt-14 pb-10 sm:pb-14 border-b border-purple-500/15">
+      {/* 2. Hero Header Section */}
+      <section className="relative pt-10 sm:pt-14 pb-10 sm:pb-12 border-b border-purple-500/15">
         <Container className="max-w-6xl relative z-10">
           <ScrollReveal direction="up" delay={50} priority={true}>
             <div className="text-center max-w-3xl mx-auto">
@@ -226,7 +254,10 @@ export function MediaBuyingPortfolioSection() {
         </Container>
       </section>
 
-      {/* Arc Slider Stage (Banana-shaped Curved Showcase for Media Buying) */}
+      {/* 3. Moving Banner (Marquee) Under the Hero displaying media campaign images */}
+      <MediaBannerMarquee />
+
+      {/* 4. Arc Slider Stage (Banana-shaped Curved Video Cards) */}
       <section
         className="relative pt-12 pb-16 overflow-hidden select-none"
         onTouchStart={handleTouchStart}
@@ -235,172 +266,109 @@ export function MediaBuyingPortfolioSection() {
       >
         <Container className="max-w-7xl relative z-10">
           {/* Arc Stage Container */}
-          <div className="relative w-full h-[620px] sm:h-[660px] md:h-[690px] mx-auto overflow-hidden">
-            {mediaBuyingProjectsData.map((project, idx) => {
+          <div className="relative w-full h-[580px] sm:h-[620px] md:h-[660px] mx-auto overflow-hidden">
+            {mediaBuyingVideos.map((item, idx) => {
               const isCenter = idx === activeIndex;
+              const isPlaying = playingVideoId === item.id;
               const style = getCardStyle(idx);
-              const title = lang === "ar" ? project.titleAr : project.titleEn;
-              const platformName =
-                lang === "ar" ? project.platformNameAr : project.platformNameEn;
-              const summary = lang === "ar" ? project.summaryAr : project.summaryEn;
-              const formatLabel =
-                lang === "ar" ? project.creativeFormatAr : project.creativeFormatEn;
-              const objective =
-                lang === "ar" ? project.objectiveAr : project.objectiveEn;
-              const deliverables =
-                lang === "ar" ? project.deliverablesAr : project.deliverablesEn;
+              const thumbnail = getVideoThumbnail(item.videoUrl, item.thumbnailUrl);
 
               return (
                 <div
-                  key={project.id}
+                  key={item.id}
                   onClick={() => {
                     if (!isCenter) setActiveIndex(idx);
                   }}
                   style={style}
                   className={cn(
-                    "absolute top-0 left-1/2 w-[310px] sm:w-[360px] md:w-[410px] rounded-3xl overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] flex flex-col justify-between bg-[#081028]/95 backdrop-blur-xl border shadow-2xl",
+                    "absolute top-0 left-1/2 w-[280px] sm:w-[320px] md:w-[360px] rounded-3xl overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] flex flex-col justify-between bg-[#081028]/95 backdrop-blur-xl border shadow-2xl p-3 sm:p-4",
                     isCenter
                       ? "border-purple-400/50 shadow-[0_20px_50px_rgba(168,85,247,0.25)] cursor-default"
                       : "border-white/10 hover:border-purple-400/30 cursor-pointer"
                   )}
                 >
-                  <div>
-                    {/* Video Container Frame */}
-                    <div
-                      className="relative w-full aspect-16/10 bg-[#060B1C] overflow-hidden border-b border-white/10 group/video cursor-pointer"
-                      onClick={(e) => {
-                        if (isCenter) {
-                          e.stopPropagation();
-                          setActiveVideoModal(project);
-                        }
-                      }}
-                    >
-                      {/* Real video preview loop with fallback poster */}
+                  {/* Video Preview Image / Active HTML5 Video Player */}
+                  <div className="relative w-full aspect-9/16 max-h-[460px] sm:max-h-[490px] rounded-2xl overflow-hidden bg-black border border-white/10 group/preview flex items-center justify-center">
+                    {isPlaying ? (
                       <video
+                        src={item.videoUrl}
+                        controls
                         autoPlay
-                        loop
-                        muted
+                        preload="none"
                         playsInline
-                        className="w-full h-full object-cover opacity-75 group-hover/video:opacity-95 transition-opacity duration-300"
+                        className="w-full h-full object-cover rounded-2xl"
+                        onEnded={() => setPlayingVideoId(null)}
                       >
-                        <source src="/images/hero-bg.mp4" type="video/mp4" />
+                        Your browser does not support the video tag.
                       </video>
+                    ) : (
+                      <div
+                        className="relative w-full h-full cursor-pointer"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleTogglePlay(item.id, idx);
+                        }}
+                      >
+                        <Image
+                          src={thumbnail}
+                          alt="Video Ad Preview"
+                          fill
+                          unoptimized
+                          sizes="(max-width: 640px) 280px, 360px"
+                          className="object-cover group-hover/preview:scale-105 transition-transform duration-500 opacity-90 group-hover/preview:opacity-100"
+                        />
 
-                      {/* Top Badges on Video Container */}
-                      <div className="absolute top-3 inset-x-3 flex items-center justify-between z-10 pointer-events-none">
-                        {/* Duration Badge */}
-                        <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-black/80 backdrop-blur-md border border-white/15 text-[10px] font-mono font-bold text-white shadow-md">
-                          <Clock className="h-3 w-3 text-cyan-400" />
-                          <span>{project.videoDuration}</span>
-                        </div>
+                        {/* Ambient gradient overlay */}
+                        <div className="absolute inset-0 bg-linear-to-t from-black/70 via-transparent to-black/30 pointer-events-none" />
 
-                        {/* Aspect Ratio & Format Badge */}
-                        <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-purple-950/90 backdrop-blur-md border border-purple-500/40 text-[10px] font-mono font-extrabold text-purple-300 shadow-md">
-                          <span>{project.aspectRatio}</span>
-                          <span className="text-white/40">|</span>
-                          <span className="capitalize">{project.platform}</span>
-                        </div>
-                      </div>
-
-                      {/* Center Play Button with Glow */}
-                      <div className="absolute inset-0 flex flex-col items-center justify-center z-10 bg-black/25 group-hover/video:bg-black/10 transition-colors">
-                        <div className="w-12 h-12 rounded-full bg-linear-to-tr from-purple-600 to-cyan-400 p-0.5 shadow-lg group-hover/video:scale-110 transition-transform duration-300">
-                          <div className="w-full h-full rounded-full bg-[#060B1E]/90 backdrop-blur-md flex items-center justify-center text-white">
-                            <Play className="h-4.5 w-4.5 fill-white translate-x-0.5" />
+                        {/* Floating Center Play Icon */}
+                        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                          <div className="w-14 h-14 rounded-full bg-linear-to-tr from-purple-600 to-cyan-400 p-0.5 shadow-xl group-hover/preview:scale-110 transition-transform duration-300">
+                            <div className="w-full h-full rounded-full bg-[#060B1E]/90 backdrop-blur-md flex items-center justify-center text-white">
+                              <Play className="h-6 w-6 fill-white translate-x-0.5 text-white" />
+                            </div>
                           </div>
                         </div>
-                        <span className="mt-1.5 text-[9px] font-bold text-white/90 bg-black/60 px-2.5 py-0.5 rounded-full backdrop-blur-sm border border-white/10">
-                          {t("portfolioAdsWatchDemo")}
-                        </span>
-                      </div>
 
-                      {/* Bottom Tag */}
-                      <div className="absolute bottom-2.5 inset-x-3 flex items-center justify-between z-10 pointer-events-none text-[9px] font-mono text-slate-300">
-                        <span className="px-2 py-0.5 rounded bg-black/70 backdrop-blur-sm border border-white/10 truncate max-w-50">
-                          {formatLabel}
-                        </span>
-                        <span className="text-emerald-400 flex items-center gap-1 bg-black/70 px-2 py-0.5 rounded backdrop-blur-sm border border-white/10 shrink-0">
-                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                          Ready
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Card Content Body */}
-                    <div className="p-4 sm:p-5">
-                      {/* Platform & Campaign Objective */}
-                      <div className="flex items-center justify-between gap-2 mb-2.5">
-                        <span className="text-[10px] font-extrabold px-2.5 py-0.5 rounded-full bg-purple-950/70 text-purple-300 border border-purple-500/30 inline-flex items-center gap-1">
-                          <TrendingUp className="h-3 w-3" />
-                          <span>{platformName}</span>
-                        </span>
-
-                        <span className="text-[11px] text-slate-400 font-semibold truncate">
-                          {lang === "ar"
-                            ? project.clientIndustryAr
-                            : project.clientIndustryEn}
-                        </span>
-                      </div>
-
-                      {/* Title */}
-                      <h3 className="text-base sm:text-lg font-black text-white mb-2 leading-snug line-clamp-1">
-                        {title}
-                      </h3>
-
-                      {/* Campaign Objective Callout */}
-                      <div className="p-2 rounded-xl bg-white/3 border border-white/5 mb-2.5">
-                        <div className="text-[9px] font-mono font-bold text-slate-400 uppercase tracking-wider mb-0.5">
-                          {t("portfolioAdsObjective")}:
-                        </div>
-                        <div className="text-xs font-bold text-cyan-300 truncate">
-                          {objective}
-                        </div>
-                      </div>
-
-                      {/* Summary */}
-                      <p className="text-xs text-slate-300 leading-relaxed font-normal mb-3 line-clamp-2">
-                        {summary}
-                      </p>
-
-                      {/* Tags */}
-                      <div className="flex flex-wrap gap-1 mb-3">
-                        {project.tags.map((tag) => (
-                          <span
-                            key={tag}
-                            className="text-[9px] font-mono font-semibold px-2 py-0.5 rounded-md bg-white/5 border border-white/10 text-slate-300"
-                          >
-                            {tag}
+                        {/* High-Tech subtle video indicator badge */}
+                        <div className="absolute top-3 inset-x-3 flex items-center justify-between text-[10px] font-mono text-white/90 pointer-events-none">
+                          <span className="px-2 py-0.5 rounded-md bg-black/70 backdrop-blur-md border border-white/15">
+                            HD Video
                           </span>
-                        ))}
+                          <span className="px-2 py-0.5 rounded-md bg-purple-950/80 backdrop-blur-md border border-purple-500/40 text-purple-300">
+                            9:16
+                          </span>
+                        </div>
                       </div>
-
-                      {/* Deliverables snippet */}
-                      <div className="space-y-1 pt-2.5 border-t border-white/10">
-                        {deliverables.slice(0, 2).map((deliv, dIdx) => (
-                          <div
-                            key={dIdx}
-                            className="flex items-start gap-1.5 text-[11px] text-slate-300 font-normal"
-                          >
-                            <CheckCircle2 className="h-3 w-3 text-purple-400 shrink-0 mt-0.5" />
-                            <span className="line-clamp-1">{deliv}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
+                    )}
                   </div>
 
-                  {/* Card Footer Actions */}
-                  <div className="p-4 sm:p-5 pt-0">
+                  {/* Card Bottom: ONLY a Play button, no title or description */}
+                  <div className="pt-3">
                     <button
                       type="button"
                       onClick={(e) => {
                         e.stopPropagation();
-                        setActiveVideoModal(project);
+                        handleTogglePlay(item.id, idx);
                       }}
-                      className="w-full btn-tech-primary inline-flex items-center justify-center gap-2 py-2 px-4 rounded-xl text-xs font-extrabold shadow-md transition-all cursor-pointer"
+                      className={cn(
+                        "w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-xs sm:text-sm font-extrabold shadow-md transition-all cursor-pointer",
+                        isPlaying
+                          ? "bg-purple-950/90 text-purple-200 border border-purple-500/50 hover:bg-purple-900"
+                          : "btn-tech-primary shadow-purple-600/30"
+                      )}
                     >
-                      <Play className="h-3.5 w-3.5 fill-white" />
-                      <span>{t("portfolioAdsPlayVideo")}</span>
+                      {isPlaying ? (
+                        <>
+                          <Pause className="h-4 w-4 fill-purple-300" />
+                          <span>{lang === "ar" ? "إيقاف الفيديو" : "Pause Video"}</span>
+                        </>
+                      ) : (
+                        <>
+                          <Play className="h-4 w-4 fill-white" />
+                          <span>{lang === "ar" ? "تشغيل الفيديو" : "Play Video"}</span>
+                        </>
+                      )}
                     </button>
                   </div>
                 </div>
@@ -413,26 +381,26 @@ export function MediaBuyingPortfolioSection() {
             {/* Prev Button */}
             <button
               type="button"
-              onClick={lang === "ar" ? nextCampaign : prevCampaign}
-              aria-label="Previous Campaign"
+              onClick={lang === "ar" ? nextVideo : prevVideo}
+              aria-label="Previous Video"
               className="w-11 h-11 rounded-2xl bg-[#081028]/90 border border-purple-500/30 text-white flex items-center justify-center hover:bg-purple-950/70 hover:border-purple-400 transition-all cursor-pointer shadow-lg shadow-black/40 hover:scale-105"
             >
               <ChevronLeft className="h-5 w-5 text-purple-300" />
             </button>
 
             {/* Dots Indicator */}
-            <div className="flex items-center gap-2">
-              {mediaBuyingProjectsData.map((_, dotIdx) => (
+            <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 max-w-xs sm:max-w-md">
+              {mediaBuyingVideos.map((_, dotIdx) => (
                 <button
                   key={dotIdx}
                   type="button"
                   onClick={() => setActiveIndex(dotIdx)}
-                  aria-label={`Go to campaign ${dotIdx + 1}`}
+                  aria-label={`Go to video ${dotIdx + 1}`}
                   className={cn(
                     "h-2.5 rounded-full transition-all duration-300 cursor-pointer",
                     dotIdx === activeIndex
-                      ? "w-8 bg-linear-to-r from-purple-400 to-cyan-400 shadow-[0_0_10px_rgba(168,85,247,0.5)]"
-                      : "w-2.5 bg-white/20 hover:bg-white/40"
+                      ? "w-7 sm:w-8 bg-linear-to-r from-purple-400 to-cyan-400 shadow-[0_0_10px_rgba(168,85,247,0.5)]"
+                      : "w-2 sm:w-2.5 bg-white/20 hover:bg-white/40"
                   )}
                 />
               ))}
@@ -441,8 +409,8 @@ export function MediaBuyingPortfolioSection() {
             {/* Next Button */}
             <button
               type="button"
-              onClick={lang === "ar" ? prevCampaign : nextCampaign}
-              aria-label="Next Campaign"
+              onClick={lang === "ar" ? prevVideo : nextVideo}
+              aria-label="Next Video"
               className="w-11 h-11 rounded-2xl bg-[#081028]/90 border border-purple-500/30 text-white flex items-center justify-center hover:bg-purple-950/70 hover:border-purple-400 transition-all cursor-pointer shadow-lg shadow-black/40 hover:scale-105"
             >
               <ChevronRight className="h-5 w-5 text-purple-300" />
@@ -450,171 +418,6 @@ export function MediaBuyingPortfolioSection() {
           </div>
         </Container>
       </section>
-
-      {/* Interactive Video Preview Lightbox Modal */}
-      {activeVideoModal && (
-        <div
-          role="dialog"
-          aria-modal="true"
-          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-md animate-in fade-in duration-200"
-        >
-          <div
-            className="fixed inset-0"
-            onClick={() => setActiveVideoModal(null)}
-            aria-hidden="true"
-          />
-          <div className="relative w-full max-w-3xl rounded-3xl bg-[#070D24] border border-purple-500/30 p-5 sm:p-7 shadow-2xl z-10 max-h-[92vh] overflow-y-auto">
-            {/* Modal Header */}
-            <div className="flex items-center justify-between border-b border-white/10 pb-4 mb-4">
-              <div className="flex items-center gap-2.5">
-                <span className="p-2 rounded-xl bg-purple-950/80 border border-purple-500/30 text-purple-400">
-                  <Film className="h-5 w-5" />
-                </span>
-                <div>
-                  <h3 className="text-base sm:text-lg font-black text-white">
-                    {lang === "ar"
-                      ? activeVideoModal.titleAr
-                      : activeVideoModal.titleEn}
-                  </h3>
-                  <div className="flex items-center gap-2 text-xs text-purple-300 font-semibold mt-0.5">
-                    <span>
-                      {lang === "ar"
-                        ? activeVideoModal.platformNameAr
-                        : activeVideoModal.platformNameEn}
-                    </span>
-                    <span>•</span>
-                    <span className="font-mono">{activeVideoModal.videoDuration}</span>
-                  </div>
-                </div>
-              </div>
-
-              <button
-                type="button"
-                onClick={() => setActiveVideoModal(null)}
-                aria-label={t("portfolioAdsModalClose")}
-                className="p-2 rounded-xl bg-white/5 border border-white/10 text-slate-300 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
-              >
-                <X className="h-5 w-5" />
-              </button>
-            </div>
-
-            {/* Video Player Container */}
-            <div className="relative w-full rounded-2xl overflow-hidden bg-black border border-white/15 mb-5 flex items-center justify-center">
-              <div
-                className={cn(
-                  "w-full overflow-hidden flex items-center justify-center bg-black",
-                  activeVideoModal.aspectRatio === "9:16"
-                    ? "max-w-70 sm:max-w-80 aspect-9/16 my-2 rounded-xl border border-white/10 shadow-2xl"
-                    : "aspect-video"
-                )}
-              >
-                <video
-                  controls
-                  autoPlay
-                  playsInline
-                  className="w-full h-full object-cover"
-                >
-                  <source src="/images/hero-bg.mp4" type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-            </div>
-
-            {/* Video Specs & Integration Details */}
-            <div className="space-y-4">
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
-                <div className="p-2.5 rounded-xl bg-white/5 border border-white/10">
-                  <div className="text-[10px] text-slate-400 font-mono">
-                    {t("portfolioAdsVideoDuration")}
-                  </div>
-                  <div className="font-bold text-white mt-0.5">
-                    {activeVideoModal.videoDuration}
-                  </div>
-                </div>
-
-                <div className="p-2.5 rounded-xl bg-white/5 border border-white/10">
-                  <div className="text-[10px] text-slate-400 font-mono">
-                    {t("portfolioAdsVideoFormat")}
-                  </div>
-                  <div className="font-bold text-purple-300 mt-0.5">
-                    {activeVideoModal.aspectRatio} (
-                    {activeVideoModal.aspectRatio === "9:16" ? "Vertical" : "Widescreen"}
-                    )
-                  </div>
-                </div>
-
-                <div className="p-2.5 rounded-xl bg-white/5 border border-white/10 col-span-2">
-                  <div className="text-[10px] text-slate-400 font-mono">
-                    {t("portfolioAdsObjective")}
-                  </div>
-                  <div className="font-bold text-cyan-300 mt-0.5 truncate">
-                    {lang === "ar"
-                      ? activeVideoModal.objectiveAr
-                      : activeVideoModal.objectiveEn}
-                  </div>
-                </div>
-              </div>
-
-              {/* Description */}
-              <div>
-                <h4 className="text-xs font-bold text-slate-400 mb-1">
-                  {lang === "ar" ? "تفاصيل واستراتيجية الحملة:" : "Campaign Strategy Overview:"}
-                </h4>
-                <p className="text-xs sm:text-sm text-slate-200 leading-relaxed">
-                  {lang === "ar"
-                    ? activeVideoModal.summaryAr
-                    : activeVideoModal.summaryEn}
-                </p>
-              </div>
-
-              {/* Deliverables */}
-              <div>
-                <h4 className="text-xs font-bold text-slate-400 mb-1.5">
-                  {t("portfolioAdsDeliverables")}
-                </h4>
-                <div className="space-y-1.5">
-                  {(lang === "ar"
-                    ? activeVideoModal.deliverablesAr
-                    : activeVideoModal.deliverablesEn
-                  ).map((item, idx) => (
-                    <div
-                      key={idx}
-                      className="flex items-center gap-2 text-xs text-slate-300"
-                    >
-                      <CheckCircle2 className="h-3.5 w-3.5 text-purple-400 shrink-0" />
-                      <span>{item}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Actions */}
-              <div className="pt-4 border-t border-white/10 flex flex-wrap gap-3">
-                <Link
-                  href="/contact"
-                  onClick={() => setActiveVideoModal(null)}
-                  className="flex-1 btn-tech-primary inline-flex items-center justify-center gap-2 py-3 px-5 rounded-xl text-xs sm:text-sm font-extrabold cursor-pointer"
-                >
-                  <span>{t("portfolioAdsCtaBtn")}</span>
-                  {lang === "ar" ? (
-                    <ArrowLeft className="h-4 w-4" />
-                  ) : (
-                    <ArrowRight className="h-4 w-4" />
-                  )}
-                </Link>
-
-                <button
-                  type="button"
-                  onClick={() => setActiveVideoModal(null)}
-                  className="btn-tech-outline inline-flex items-center justify-center gap-2 py-3 px-5 rounded-xl text-xs sm:text-sm font-bold text-white cursor-pointer"
-                >
-                  <span>{t("portfolioAdsModalClose")}</span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

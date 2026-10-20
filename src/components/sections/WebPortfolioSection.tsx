@@ -147,12 +147,45 @@ export function WebPortfolioSection() {
 
   return (
     <div className="relative w-full overflow-hidden bg-[#060B18]">
+      {/* 1. Full-Bleed 100% Edge-to-Edge Top Video Showcase (Under Navbar, Above Hero) */}
+      <div className="w-full relative overflow-hidden z-10 border-b border-cyan-500/25 shadow-2xl shadow-blue-950/70">
+        <div className="relative w-full h-[240px] sm:h-[320px] md:h-[400px] lg:h-[460px] xl:h-[500px] overflow-hidden bg-[#060B1C]">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="none"
+            className="w-full h-full object-cover object-center"
+          >
+            <source src="/images/web/gemini_generated_video_a478e6d2.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+
+          {/* Vignette Gradients for High-End Tech Feel */}
+          <div className="absolute inset-0 bg-linear-to-t from-[#060B18] via-transparent to-[#060B18]/30 pointer-events-none" />
+          <div className="absolute inset-y-0 left-0 w-16 sm:w-28 bg-linear-to-r from-[#060B18]/40 to-transparent pointer-events-none" />
+          <div className="absolute inset-y-0 right-0 w-16 sm:w-28 bg-linear-to-l from-[#060B18]/40 to-transparent pointer-events-none" />
+
+          {/* Floating Badges on Video */}
+          <div className="absolute bottom-4 right-4 sm:bottom-6 sm:right-8 z-20 flex items-center gap-2 px-3 sm:px-3.5 py-1.5 rounded-xl bg-[#060B1C]/85 border border-cyan-500/30 backdrop-blur-md text-[10px] sm:text-xs font-bold text-white shadow-xl">
+            <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping" />
+            <span>{lang === "ar" ? "تطوير مواقع وتطبيقات عصرية" : "Next.js Web Platforms"}</span>
+          </div>
+
+          <div className="absolute top-4 left-4 sm:top-6 sm:left-8 z-20 flex items-center gap-2 px-3 sm:px-3.5 py-1.5 rounded-xl bg-[#060B1C]/85 border border-blue-500/30 backdrop-blur-md text-[10px] sm:text-xs font-bold text-cyan-300 shadow-xl">
+            <Sparkles className="h-3.5 w-3.5 text-cyan-400" />
+            <span>Smart Media Web</span>
+          </div>
+        </div>
+      </div>
+
       {/* Ambient background glows */}
-      <div className="absolute top-20 right-1/4 w-125 h-125 bg-cyan-600/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-96 right-1/4 w-125 h-125 bg-cyan-600/10 rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute top-1/2 left-10 w-112.5 h-112.5 bg-blue-600/10 rounded-full blur-[150px] pointer-events-none" />
 
       {/* Hero Header Section */}
-      <section className="relative pt-8 sm:pt-14 pb-10 sm:pb-14 border-b border-blue-500/15">
+      <section className="relative pt-10 sm:pt-14 pb-10 sm:pb-14 border-b border-blue-500/15">
         <Container className="max-w-6xl relative z-10">
           <ScrollReveal direction="up" delay={50} priority={true}>
             <div className="text-center max-w-3xl mx-auto">
