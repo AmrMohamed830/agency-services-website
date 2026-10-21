@@ -13,11 +13,17 @@ export const PARTNER_WHATSAPP_NUMBER = "201515334141";
  */
 export function getWhatsappNumberByService(service: string): string {
   if (
+    service === "إنشاء فيديوهات إعلانية" ||
+    service === "فيديوهات إعلانية" ||
+    service === "Ad Video Creation" ||
+    service === "AI Video Production" ||
     service === "إعلانات ممولة" ||
     service === "موقع إلكتروني + إعلانات ممولة" ||
     service === "Paid Advertising" ||
     service === "Website + Paid Advertising" ||
     service.includes("إعلانات") ||
+    service.includes("فيديو") ||
+    service.includes("Video") ||
     service.includes("Ads")
   ) {
     return PARTNER_WHATSAPP_NUMBER;

@@ -131,7 +131,7 @@ export function Hero() {
                 {/* Main CTA Button */}
                 <Link
                   href="/contact"
-                  className="h-12 sm:h-13 px-7 sm:px-8 btn-tech-primary inline-flex items-center justify-center gap-2.5 text-sm sm:text-base font-extrabold rounded-2xl cursor-pointer leading-none shadow-lg shadow-blue-600/30"
+                  className="h-12 sm:h-13 px-7 sm:px-8 btn-tech-primary inline-flex items-center justify-center gap-2.5 text-sm sm:text-base font-extrabold rounded-2xl cursor-pointer leading-none shadow-lg shadow-purple-600/30"
                 >
                   <span>{t("startProjectBtn")}</span>
                   {lang === "ar" ? <ArrowLeft className="h-4 w-4" /> : <ArrowRight className="h-4 w-4" />}

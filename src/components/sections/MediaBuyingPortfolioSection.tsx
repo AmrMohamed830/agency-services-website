@@ -29,10 +29,12 @@ export function MediaBuyingPortfolioSection() {
   const videosCount = mediaBuyingVideos.length;
 
   const nextVideo = React.useCallback(() => {
+    setPlayingVideoId(null);
     setActiveIndex((prev) => (prev + 1) % videosCount);
   }, [videosCount]);
 
   const prevVideo = React.useCallback(() => {
+    setPlayingVideoId(null);
     setActiveIndex((prev) => (prev - 1 + videosCount) % videosCount);
   }, [videosCount]);
 
@@ -67,7 +69,7 @@ export function MediaBuyingPortfolioSection() {
 
   // Keyboard navigation
   React.useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
+    const handleKeyDown = (e: KeyboardEvent): void => {
       if (e.key === "ArrowLeft") {
         if (lang === "ar") nextVideo();
         else prevVideo();
@@ -269,7 +271,7 @@ export function MediaBuyingPortfolioSection() {
           <div className="relative w-full h-[580px] sm:h-[620px] md:h-[660px] mx-auto overflow-hidden">
             {mediaBuyingVideos.map((item, idx) => {
               const isCenter = idx === activeIndex;
-              const isPlaying = playingVideoId === item.id;
+              const isPlaying = isCenter && playingVideoId === item.id;
               const style = getCardStyle(idx);
               const thumbnail = getVideoThumbnail(item.videoUrl, item.thumbnailUrl);
 
@@ -277,7 +279,10 @@ export function MediaBuyingPortfolioSection() {
                 <div
                   key={item.id}
                   onClick={() => {
-                    if (!isCenter) setActiveIndex(idx);
+                    if (!isCenter) {
+                      setPlayingVideoId(null);
+                      setActiveIndex(idx);
+                    }
                   }}
                   style={style}
                   className={cn(
@@ -397,12 +402,15 @@ export function MediaBuyingPortfolioSection() {
                 <button
                   key={dotIdx}
                   type="button"
-                  onClick={() => setActiveIndex(dotIdx)}
+                  onClick={() => {
+                    setPlayingVideoId(null);
+                    setActiveIndex(dotIdx);
+                  }}
                   aria-label={`Go to video ${dotIdx + 1}`}
                   className={cn(
                     "h-2.5 rounded-full transition-all duration-300 cursor-pointer",
                     dotIdx === activeIndex
-                      ? "w-7 sm:w-8 bg-linear-to-r from-purple-400 to-cyan-400 shadow-[0_0_10px_rgba(168,85,247,0.5)]"
+                      ? "w-7 sm:w-8 bg-purple-500 shadow-[0_0_10px_rgba(168,85,247,0.6)]"
                       : "w-2 sm:w-2.5 bg-white/20 hover:bg-white/40"
                   )}
                 />

@@ -14,9 +14,9 @@ export const navItems: NavItem[] = [
         iconName: "web",
       },
       {
-        label: "معرض الميديا باينج والإعلانات",
+        label: "أعمال الإعلانات والفيديوهات",
         href: "/work/media-buying",
-        description: "حملات إعلانية ممولة وفيديوهات AI",
+        description: "إدارة إعلانات ممولة وفيديوهات AI مبتكرة",
         iconName: "ads",
       },
     ],

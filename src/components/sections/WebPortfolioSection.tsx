@@ -76,7 +76,7 @@ export function WebPortfolioSection() {
 
   // Handle escape key to close project preview modal
   React.useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
+    const handleKeyDown = (e: KeyboardEvent): void => {
       if (e.key === "Escape") {
         setSelectedProject(null);
       } else if (e.key === "ArrowLeft") {

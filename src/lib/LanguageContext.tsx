@@ -20,8 +20,8 @@ const translations: Record<Language, Record<string, string>> = {
     navWorkDropdown: "أعمالنا ونتايجنا",
     navWorkWeb: "معرض تطوير المواقع",
     navWorkWebDesc: "مواقع وتطبيقات Next.js عصرية وفائقة السرعة",
-    navWorkAds: "معرض الميديا باينج والإعلانات",
-    navWorkAdsDesc: "حملات ممولة مستهدفة وفيديوهات تسويقية بالذكاء الاصطناعي",
+    navWorkAds: "أعمال الإعلانات والفيديوهات",
+    navWorkAdsDesc: "إدارة الحملات الإعلانية وإنتاج فيديوهات مبتكرة بالذكاء الاصطناعي",
     navWorkAll: "عرض جميع الأعمال",
     navProcess: "إزاي بنشتغل",
     navFaq: "أسئلة شائعة",
@@ -54,9 +54,9 @@ const translations: Record<Language, Record<string, string>> = {
     portfolioWebCtaSubtext: "تواصل معنا اليوم وسنقوم بدراسة مشروعك واقتراح أفضل هيكل تقني وتصميمي يناسب علامتك التجارية.",
     portfolioWebCtaBtn: "ابدأ مشروع موقعك الآن",
 
-    // Portfolio: Media Buying Page
-    portfolioAdsBadge: "معرض أعمال الميديا باينج والإعلانات الممولة",
-    portfolioAdsHeroTitle: "استراتيجيات إعلانية مستهدفة وفيديوهات تسويقية تحقق أعلى عائد",
+    // Portfolio: Ads & Videos Page
+    portfolioAdsBadge: "أعمال الإعلانات والفيديوهات",
+    portfolioAdsHeroTitle: "إدارة الإعلانات الممولة وإنتاج الفيديوهات الإعلانية",
     portfolioAdsHeroSubtext: "استكشف نماذج حملاتنا الإعلانية وفيديوهاتنا التسويقية المصممة لمنصات TikTok و Meta و Google، مهيأة بالكامل لدعم الفيديوهات الإعلانية بجميع الأطوال والأبعاد.",
     portfolioAdsFilterAll: "جميع الحملات",
     portfolioAdsFilterMeta: "Meta Ads (فيسبوك وإنستجرام)",
@@ -86,7 +86,7 @@ const translations: Record<Language, Record<string, string>> = {
     startProjectBtn: "ابدأ مشروعك دلوقتي",
     viewServicesBtn: "شوف خدماتنا",
     pillarWeb: "تطوير المواقع والواجهات",
-    pillarAds: "الحملات الإعلانية وإدارة الإعلانات",
+    pillarAds: "إدارة الإعلانات وإنتاج الفيديوهات",
 
     // Services Section Header
     servicesBadge: "خدمات سمارت ميديا",
@@ -102,16 +102,19 @@ const translations: Record<Language, Record<string, string>> = {
     service1Headline: "موقعك هو الأساس الرقمي لعملك.",
     service1Desc:
       "بنصمم وبنبني مواقع سريعة ومتجاوبة تقدم لشركتك حضورًا رقميًا احترافيًا، وتسهّل على عملائك المحتملين اكتشاف خدماتك وفهمها والتواصل معك بسهولة.",
+    service1CapabilitiesTitle: "الخدمات",
     service1Cta: "ابنِ موقعك الآن",
 
-    // Service 02: Media Buying & AI Videos (Merged Flagship Service)
+    // Service 02: Paid Ads & Video Production
     service2Num: "02",
-    service2Category: "Media Buying & AI Video Creatives",
-    service2Title: "الحملات الإعلانية ومبتكرات الذكاء الاصطناعي",
-    service2Headline: "استهداف فئات الميديا باير وفيديوهات إعلانية سينمائية بالذكاء الاصطناعي.",
+    service2Category: "PAID ADS & VIDEO PRODUCTION",
+    service2Title: "إدارة الإعلانات الممولة وإنتاج الفيديوهات الإعلانية",
+    service2Headline: "إدارة الإعلانات الممولة وإنتاج الفيديوهات الإعلانية",
+    service2Subheadline: "من فكرة الإعلان إلى إطلاق حملتك.",
     service2Desc:
-      "بندير حملاتك الإعلانية الممولة على منصات TikTok, Google, Meta مع إنتاج فيديوهات وسكربتات إعلانية مبتكرة بالذكاء الاصطناعي لضمان أعلى معدل تحويل وأفضل عائد على الإنفاق الإعلاني (ROAS).",
-    service2Cta: "أطلق حملتك وفيديوهاتك الآن",
+      "بنساعدك توصل لجمهورك المناسب من خلال إدارة الحملات الإعلانية على Meta وGoogle وTikTok، مع إنتاج فيديوهات إعلانية مبتكرة باستخدام تقنيات الذكاء الاصطناعي، وكتابة محتوى إعلاني يناسب طبيعة مشروعك.",
+    service2CapabilitiesTitle: "الخدمات",
+    service2Cta: "ابدأ حملتك الإعلانية",
 
     // Capabilities AR
     capNext: "تطوير Next.js",
@@ -121,12 +124,12 @@ const translations: Record<Language, Record<string, string>> = {
     capWhatsapp: "ربط الواتساب المباشر",
     capLeads: "نماذج تواصل وجمع العملاء المحتملين",
 
-    capStrategy: "استراتيجية واستهداف فئات الميديا باير بدقة",
-    capPlatforms: "إعلانات ممولة على Meta و Google و TikTok",
-    capAiVideo: "فيديوهات إعلانية سينمائية بالذكاء الاصطناعي",
-    capAiScripts: "سكربتات ونصوص إعلانية مقنعة عالية التحويل",
-    capPixel: "ربط Pixel و Conversions API وتتبع المبيعات",
-    capRoas: "تحسين مستمر لـ ROAS وتقارير دورية شفافة",
+    capStrategy: "إعداد استراتيجية إعلانية وتحديد الجمهور المستهدف",
+    capPlatforms: "إدارة الحملات الإعلانية على Meta وGoogle وTikTok",
+    capAiVideo: "إنتاج فيديوهات إعلانية باستخدام الذكاء الاصطناعي",
+    capAiScripts: "كتابة السكربتات والنصوص الإعلانية",
+    capPixel: "ربط أدوات التتبع وقياس النتائج",
+    capRoas: "تحسين أداء الحملات وتقديم تقارير دورية",
 
     // Projects
     projectsBadge: "أعمالنا ونتايجنا",
@@ -176,6 +179,7 @@ const translations: Record<Language, Record<string, string>> = {
     formPhone: "رقم الهاتف / WhatsApp",
     formService: "الخدمة المطلوبة",
     servicePlaceholder: "-- اختر الخدمة المطلوبة --",
+    serviceOptVideo: "إنشاء فيديوهات إعلانية",
     serviceOptWeb: "تطوير موقع إلكتروني",
     serviceOptAds: "إعلانات ممولة",
     serviceOptBoth: "موقع إلكتروني + إعلانات ممولة",
@@ -204,8 +208,8 @@ const translations: Record<Language, Record<string, string>> = {
     navWorkDropdown: "Our Work & Portfolio",
     navWorkWeb: "Web Development Portfolio",
     navWorkWebDesc: "High-performance, modern Next.js websites & apps",
-    navWorkAds: "Media Buying Portfolio",
-    navWorkAdsDesc: "Precision paid campaigns & cinematic AI video creatives",
+    navWorkAds: "Ads & Video Production",
+    navWorkAdsDesc: "Managed paid campaigns & AI video production",
     navWorkAll: "View All Work",
     navProcess: "How We Work",
     navFaq: "FAQ",
@@ -238,9 +242,9 @@ const translations: Record<Language, Record<string, string>> = {
     portfolioWebCtaSubtext: "Get in touch today to discuss your project requirements and discover how we can engineer an exceptional digital presence for your brand.",
     portfolioWebCtaBtn: "Start Your Web Project",
 
-    // Portfolio: Media Buying Page
-    portfolioAdsBadge: "Media Buying & Paid Advertising Showcase",
-    portfolioAdsHeroTitle: "Precision Ad Strategies & Video Creatives That Drive Growth",
+    // Portfolio: Ads & Videos Page
+    portfolioAdsBadge: "Ads & Video Production Showcase",
+    portfolioAdsHeroTitle: "Paid Ads Management & Video Production",
     portfolioAdsHeroSubtext: "Explore campaign architectures and creative ad visual frameworks across TikTok, Meta, and Google, designed to support real advertising videos of all lengths and aspect ratios.",
     portfolioAdsFilterAll: "All Campaigns",
     portfolioAdsFilterMeta: "Meta Ads (Facebook & Instagram)",
@@ -270,7 +274,7 @@ const translations: Record<Language, Record<string, string>> = {
     startProjectBtn: "Start Your Project Now",
     viewServicesBtn: "Explore Our Services",
     pillarWeb: "Website Development",
-    pillarAds: "Media Buying & Paid Advertising",
+    pillarAds: "Ads Management & Video Production",
 
     // Services Section Header
     servicesBadge: "Smart Media Services",
@@ -286,16 +290,19 @@ const translations: Record<Language, Record<string, string>> = {
     service1Headline: "Your Website Is Your Digital Foundation.",
     service1Desc:
       "We design and build fast, responsive websites that give your business a professional digital presence, making it easy for potential customers to discover, understand, and contact you easily.",
+    service1CapabilitiesTitle: "Capabilities",
     service1Cta: "Build My Website",
 
-    // Service 02: Media Buying & AI Videos (Merged Flagship Service)
+    // Service 02: Paid Ads & Video Production
     service2Num: "02",
-    service2Category: "Media Buying & AI Video Creatives",
-    service2Title: "Media Buying, Paid Ads & AI Video Creatives",
-    service2Headline: "Precision Audience Targeting & Cinematic AI Video Production.",
+    service2Category: "PAID ADS & VIDEO PRODUCTION",
+    service2Title: "Paid Ads Management & Video Production",
+    service2Headline: "Paid Ads Management & Video Production",
+    service2Subheadline: "From ad concept to full campaign launch.",
     service2Desc:
-      "We plan, deploy, and scale targeted paid ad campaigns across TikTok, Google, and Meta, combined with custom AI video creatives and high-converting scripts that maximize your ROAS.",
-    service2Cta: "Launch Campaign & AI Videos",
+      "We help you reach your ideal audience through managed ad campaigns on Meta, Google, and TikTok, alongside innovative AI-powered ad video production and copywriting tailored specifically to your business.",
+    service2CapabilitiesTitle: "Services",
+    service2Cta: "Launch Your Ad Campaign",
 
     // Capabilities EN
     capNext: "Next.js Development",
@@ -305,12 +312,12 @@ const translations: Record<Language, Record<string, string>> = {
     capWhatsapp: "Direct WhatsApp Integration",
     capLeads: "Contact & Lead Generation Forms",
 
-    capStrategy: "Precision Media Buying & Audience Targeting",
-    capPlatforms: "Paid Ads on Meta, Google & TikTok",
-    capAiVideo: "Cinematic AI Video Ads (TikTok, Reels & Shorts)",
-    capAiScripts: "High-Converting Persuasive Video Scripts",
-    capPixel: "Meta Pixel & Conversions API Tracking",
-    capRoas: "Continuous ROAS Optimization & Transparent Reports",
+    capStrategy: "Ad strategy formulation & target audience definition",
+    capPlatforms: "Campaign management on Meta, Google & TikTok",
+    capAiVideo: "Ad video production using Artificial Intelligence",
+    capAiScripts: "High-converting scriptwriting & ad copy",
+    capPixel: "Tracking tools setup & performance analytics",
+    capRoas: "Continuous campaign optimization & periodic reports",
 
     // Projects
     projectsBadge: "Portfolio & Results",
@@ -360,6 +367,7 @@ const translations: Record<Language, Record<string, string>> = {
     formPhone: "Phone / WhatsApp",
     formService: "Required Service",
     servicePlaceholder: "-- Select Required Service --",
+    serviceOptVideo: "Ad Video Creation",
     serviceOptWeb: "Website Development",
     serviceOptAds: "Paid Advertising",
     serviceOptBoth: "Website + Paid Advertising",

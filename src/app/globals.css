@@ -127,16 +127,17 @@ img, video {
     linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
 }
 
-/* Creative High-Tech Buttons */
+/* Creative High-Tech Buttons - Clean Unified Purple (No Blue Gradient) */
 .btn-tech-primary {
   position: relative;
-  background: linear-gradient(135deg, #00D2FF 0%, #2563EB 50%, #7C3AED 100%);
+  background-color: #7c3aed;
+  background: #7c3aed;
   color: #FFFFFF;
   font-weight: 800;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(196, 181, 253, 0.35);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   overflow: hidden;
-  box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+  box-shadow: 0 4px 18px rgba(124, 58, 237, 0.35);
 }
 
 .btn-tech-primary::before {
@@ -149,16 +150,18 @@ img, video {
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(255, 255, 255, 0.3),
+    rgba(255, 255, 255, 0.22),
     transparent
   );
   transition: left 0.6s ease;
 }
 
 .btn-tech-primary:hover {
+  background-color: #6d28d9;
+  background: #6d28d9;
   transform: translateY(-2px);
-  box-shadow: 0 0 25px rgba(59, 130, 246, 0.6), 0 0 40px rgba(124, 58, 237, 0.4);
-  border-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 25px rgba(139, 92, 246, 0.55), 0 0 35px rgba(124, 58, 237, 0.35);
+  border-color: rgba(216, 180, 254, 0.6);
 }
 
 .btn-tech-primary:hover::before {
@@ -167,20 +170,20 @@ img, video {
 
 .btn-tech-outline {
   position: relative;
-  background: rgba(10, 20, 48, 0.6);
+  background: rgba(16, 10, 36, 0.6);
   backdrop-filter: blur(8px);
   color: #F8FAFC;
   font-weight: 700;
-  border: 1px solid rgba(59, 130, 246, 0.25);
+  border: 1px solid rgba(139, 92, 246, 0.3);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .btn-tech-outline:hover {
-  background: rgba(17, 34, 77, 0.85);
-  border-color: rgba(0, 210, 255, 0.6);
+  background: rgba(28, 16, 64, 0.85);
+  border-color: rgba(167, 139, 250, 0.6);
   color: #FFFFFF;
   transform: translateY(-2px);
-  box-shadow: 0 0 20px rgba(0, 210, 255, 0.25);
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
 }
 
 /* Modern Dark Cards */

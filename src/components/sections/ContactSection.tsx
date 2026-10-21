@@ -319,6 +319,7 @@ export function ContactSection() {
                         )}
                       >
                         <option value="" className="bg-[#030818] text-slate-400">{t("servicePlaceholder")}</option>
+                        <option value="إنشاء فيديوهات إعلانية" className="bg-[#030818] text-white">{t("serviceOptVideo")}</option>
                         <option value="تطوير موقع إلكتروني" className="bg-[#030818] text-white">{t("serviceOptWeb")}</option>
                         <option value="إعلانات ممولة" className="bg-[#030818] text-white">{t("serviceOptAds")}</option>
                         <option value="موقع إلكتروني + إعلانات ممولة" className="bg-[#030818] text-white">{t("serviceOptBoth")}</option>

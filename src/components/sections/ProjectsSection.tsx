@@ -59,7 +59,7 @@ export function ProjectsSection() {
               className={cn(
                 "px-7 py-3.5 rounded-2xl text-xs sm:text-sm font-extrabold transition-all duration-300 cursor-pointer flex items-center gap-3 border",
                 activeFilter === "web"
-                  ? "btn-tech-primary shadow-[0_0_20px_rgba(59,130,246,0.5)] scale-[1.03]"
+                  ? "btn-tech-primary shadow-[0_0_20px_rgba(139,92,246,0.5)] scale-[1.03]"
                   : "btn-tech-outline text-slate-300 hover:text-white"
               )}
             >

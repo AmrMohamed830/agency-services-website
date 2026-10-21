@@ -43,8 +43,8 @@ export function ServicesSection() {
 
   const adsWhatsappMsg =
     lang === "ar"
-      ? "أهلاً سمارت ميديا 👋، حابب أستفسر عن إدارة الحملات الإعلانية وفيديوهات الذكاء الاصطناعي"
-      : "Hello Smart Media 👋, I would like to inquire about Paid Ads & AI Video Creatives";
+      ? "أهلاً سمارت ميديا 👋، حابب أستفسر عن إدارة الإعلانات الممولة وإنتاج الفيديوهات الإعلانية"
+      : "Hello Smart Media 👋, I would like to inquire about Paid Ads Management & Video Production";
   const adsWhatsappUrl = getWhatsappUrlByService("إعلانات ممولة", adsWhatsappMsg);
 
   return (
@@ -76,8 +76,8 @@ export function ServicesSection() {
 
             <p className="mt-4 text-base sm:text-lg text-slate-300 leading-relaxed font-normal">
               {lang === "ar"
-                ? "بنركز على ركيزتين أساسيتين: تطوير المواقع العصرية، والحملات الإعلانية الممولة مع فيديوهات الذكاء الاصطناعي لبناء حضور رقمي قوي وتحقيق أعلى عائد."
-                : "We focus on two core pillars: High-performance web platforms, and targeted paid ads with AI video creatives for exponential ROI."}
+                ? "بنركز على ركيزتين أساسيتين: تطوير المواقع العصرية، والحملات الإعلانية الممولة مع فيديوهات الذكاء الاصطناعي لبناء حضور رقمي قوي وتحقيق أفضل عائد."
+                : "We focus on two core pillars: High-performance web platforms, and targeted paid ads with AI video creatives for exponential growth."}
             </p>
           </div>
         </ScrollReveal>
@@ -119,6 +119,9 @@ export function ServicesSection() {
 
                   {/* Capabilities List */}
                   <div className="pt-2">
+                    <div className="text-xs font-extrabold uppercase tracking-wider text-slate-400 mb-2.5">
+                      {t("service1CapabilitiesTitle")}
+                    </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                       {webCapabilities.map((cap, idx) => (
                         <div
@@ -155,7 +158,7 @@ export function ServicesSection() {
             </div>
           </ScrollReveal>
 
-          {/* Service 02: Merged Media Buying, Paid Advertising & AI Video Creatives */}
+          {/* Service 02: Paid Ads & Video Production */}
           <ScrollReveal direction="up" delay={200}>
             <div
               onMouseEnter={() => setHoveredCard(2)}
@@ -174,8 +177,8 @@ export function ServicesSection() {
                     <span className="text-sm font-black text-purple-400 px-3 py-1 rounded-xl bg-purple-950/50 border border-purple-500/30">
                       02
                     </span>
-                    <span className="text-xs font-extrabold uppercase tracking-wider text-slate-400">
-                      Media Buying & AI Video Creatives
+                    <span className="text-xs font-extrabold uppercase tracking-wider text-purple-300/90">
+                      PAID ADS & VIDEO PRODUCTION
                     </span>
                   </div>
 
@@ -183,12 +186,19 @@ export function ServicesSection() {
                     {t("service2Headline")}
                   </h3>
 
+                  <p className="text-base sm:text-lg font-bold text-cyan-300">
+                    {t("service2Subheadline")}
+                  </p>
+
                   <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
                     {t("service2Desc")}
                   </p>
 
                   {/* Capabilities List */}
                   <div className="pt-2">
+                    <div className="text-xs font-extrabold uppercase tracking-wider text-slate-400 mb-2.5">
+                      {t("service2CapabilitiesTitle")}
+                    </div>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                       {adsAndAiCapabilities.map((cap, idx) => (
                         <div
